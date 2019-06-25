@@ -1,5 +1,7 @@
 ## Documentation
 
+* [React Starter Kit Overview](./overview.md)
+
 ### General
 
 * [Getting Started](./getting-started.md)
