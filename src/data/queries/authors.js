@@ -1,16 +1,16 @@
 import { GraphQLList as List } from 'graphql';
 import fetch from 'node-fetch';
-import PartType from '../types/PartType';
+import AuthorType from '../types/AuthorType';
 
-// FreeGenes Parts API
-const url = 'https://api.freegenes.org/parts/';
+// FreeGenes Authors API
+const url = 'https://api.freegenes.org/authors/';
 
 let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const parts = {
-  type: new List(PartType),
+const authors = {
+  type: new List(AuthorType),
   resolve() {
     if (lastFetchTask) {
       return lastFetchTask;
@@ -41,4 +41,4 @@ const parts = {
   },
 };
 
-export default parts;
+export default authors;

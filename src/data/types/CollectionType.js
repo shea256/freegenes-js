@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 
 const CollectionType = new ObjectType({
-  name: 'CollectionItem',
+  name: 'Collection',
   fields: {
     name: { type: new NonNull(StringType) },
     parent_uuid: { type: StringType },

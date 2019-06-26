@@ -28,6 +28,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'parts' */ './parts'),
     },
     {
+      path: '/authors',
+      load: () => import(/* webpackChunkName: 'authors' */ './authors'),
+    },
+    {
       path: '/contact',
       load: () => import(/* webpackChunkName: 'contact' */ './contact'),
     },
