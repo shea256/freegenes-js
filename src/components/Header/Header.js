@@ -22,21 +22,9 @@ class Header extends React.Component {
         <div className={s.container}>
           <Navigation />
           <Link className={s.brand} to="/">
-            <img
-              src={logoUrl}
-              srcSet={`${logoUrl2x} 2x`}
-              width="38"
-              height="38"
-              alt="React"
-            />
+            
             <span className={s.brandTxt}>FreeGenes</span>
           </Link>
-          <div className={s.banner}>
-            <h1 className={s.bannerTitle}>The DNA Commons</h1>
-            <p className={s.bannerDesc}>
-              DNA sequences in the public domain, for all to browse and order
-            </p>
-          </div>
         </div>
       </div>
     );
@@ -44,3 +32,13 @@ class Header extends React.Component {
 }
 
 export default withStyles(s)(Header);
+
+/*
+<img
+              src={logoUrl}
+              srcSet={`${logoUrl2x} 2x`}
+              width="38"
+              height="38"
+              alt="React"
+            />
+*/

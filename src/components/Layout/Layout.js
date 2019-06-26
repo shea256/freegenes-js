@@ -28,7 +28,6 @@ class Layout extends React.Component {
       <div>
         <Header />
         {this.props.children}
-        <Feedback />
         <Footer />
       </div>
     );
@@ -36,3 +35,5 @@ class Layout extends React.Component {
 }
 
 export default withStyles(normalizeCss, s)(Layout);
+
+//        <Feedback />

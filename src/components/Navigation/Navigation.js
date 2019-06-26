@@ -20,7 +20,18 @@ class Navigation extends React.Component {
         <Link className={s.link} to="/about">
           About
         </Link>
-        <Link className={s.link} to="/contact">
+        <Link className={s.link} to="/collections">
+          Collections
+        </Link>
+      </div>
+    );
+  }
+}
+
+export default withStyles(s)(Navigation);
+
+/*
+<Link className={s.link} to="/contact">
           Contact
         </Link>
         <span className={s.spacer}> | </span>
@@ -31,9 +42,4 @@ class Navigation extends React.Component {
         <Link className={cx(s.link, s.highlight)} to="/register">
           Sign up
         </Link>
-      </div>
-    );
-  }
-}
-
-export default withStyles(s)(Navigation);
+*/
