@@ -11,6 +11,7 @@ class Collections extends React.Component {
         readme: PropTypes.string.isRequired,
         time_created: PropTypes.string.isRequired,
         uuid: PropTypes.string.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string),
       }),
     ).isRequired,
   };
@@ -26,9 +27,12 @@ class Collections extends React.Component {
               <h1 className={s.collectionsTitle}>
                 {item.name}
               </h1>
-              <h5 className={s.collectionsDesc}>
-                {item.time_created}
-              </h5>
+              <h4 className={s.collectionsDesc}>
+                Created: {item.time_created}
+              </h4>
+              <h4 className={s.collectionsDesc}>
+                Tags: {item.tags.join(', ')}
+              </h4>
               <div
                 className={s.collectionsDesc}
                 // eslint-disable-next-line react/no-danger

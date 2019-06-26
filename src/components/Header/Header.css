@@ -16,12 +16,15 @@
 .root {
   background: #373277;
   color: #fff;
+
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .container {
   margin: 0 auto;
   padding: 20px 0;
-  max-width: var(--max-content-width);
+  //max-width: var(--max-content-width);
 }
 
 .brand {
@@ -31,5 +34,5 @@
 }
 
 .brandTxt {
-  margin-left: 10px;
+  //margin-left: 10px;
 }

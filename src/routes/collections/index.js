@@ -5,7 +5,7 @@ import Layout from '../../components/Layout';
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{collections{name,readme,time_created,uuid}}',
+      query: '{collections{name,readme,time_created,uuid,tags}}',
     }),
   });
   const { data } = await resp.json();

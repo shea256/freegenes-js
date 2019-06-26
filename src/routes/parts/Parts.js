@@ -13,6 +13,7 @@ class Parts extends React.Component {
         name: PropTypes.string.isRequired,
         original_sequence: PropTypes.string.isRequired,
         part_type: PropTypes.string,
+        tags: PropTypes.arrayOf(PropTypes.string),
         status: PropTypes.string,
         time_created: PropTypes.string.isRequired,
         uuid: PropTypes.string.isRequired,
@@ -35,6 +36,7 @@ class Parts extends React.Component {
                 <th className={s.tableTh} scope="col">Part Type</th>
                 <th className={s.tableTh} scope="col">Status</th>
                 <th className={s.tableTh} scope="col">Time Created</th>
+                <th className={s.tableTh} scope="col">Tags</th>
                 <th className={s.tableTh} scope="col">Original Sequence</th>
               </tr>
             </thead>
@@ -49,7 +51,12 @@ class Parts extends React.Component {
                       <td className={s.tableTd}>{item.part_type}</td>
                       <td className={s.tableTd}>{item.status}</td>
                       <td className={s.tableTd}>{item.time_created}</td>
-                      <td className={s.tableTdBreak}>{item.original_sequence}</td>
+                      <td className={s.tableTd}>{item.tags.join(', ')}</td>
+                      <td className={s.tableTdBreak}>
+                        {item.original_sequence.slice(0,40)}
+                        &nbsp;...&nbsp;
+                        {item.original_sequence.slice(-40)}
+                      </td>
                     </tr>
                   )
                 }

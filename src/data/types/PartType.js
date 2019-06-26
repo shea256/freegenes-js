@@ -2,6 +2,7 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
+  GraphQLList as ListType,
 } from 'graphql';
 
 const PartType = new ObjectType({
@@ -17,9 +18,10 @@ const PartType = new ObjectType({
     part_type: { type: new NonNull(StringType) },
     status: { type: new NonNull(StringType) },
     synthesized_sequence: { type: new NonNull(StringType) },
+    tags: { type: new ListType(StringType) },
     time_created: { type: new NonNull(StringType) },
     time_updated: { type: StringType },
-    uuid: { type: new NonNull(StringType) },    
+    uuid: { type: new NonNull(StringType) },
   },
 });
 
