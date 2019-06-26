@@ -14,18 +14,16 @@ import Layout from '../../components/Layout';
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{collections{name,readme,time_created,uuid}}',
+      query: '{}',
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.collections) throw new Error('Failed to load collections.');
-  console.log(data.collections)
   return {
-    title: 'FreeGenes Collections',
+    title: 'FreeGenes Home',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home collections={data.collections} />
+        <Home />
       </Layout>
     ),
   };

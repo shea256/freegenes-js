@@ -19,7 +19,7 @@ class Collections extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>FreeGenes Collections</h1>
+          <h1>Gene Collections</h1>
 
           {this.props.collections.map(item => (
             <article key={item.uuid} className={s.collectionsItem}>

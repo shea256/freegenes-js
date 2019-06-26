@@ -24,6 +24,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'collections' */ './collections'),
     },
     {
+      path: '/parts',
+      load: () => import(/* webpackChunkName: 'parts' */ './parts'),      
+    },
+    {
       path: '/contact',
       load: () => import(/* webpackChunkName: 'contact' */ './contact'),
     },

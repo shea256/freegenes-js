@@ -23,6 +23,9 @@ class Navigation extends React.Component {
         <Link className={s.link} to="/collections">
           Collections
         </Link>
+        <Link className={s.link} to="/parts">
+          Parts
+        </Link>
       </div>
     );
   }

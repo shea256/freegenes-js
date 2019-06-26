@@ -9,17 +9,17 @@
 
 import { GraphQLList as List } from 'graphql';
 import fetch from 'node-fetch';
-import CollectionItemType from '../types/CollectionItemType';
+import PartType from '../types/PartType';
 
-// FreeGenes Collections API
-const url = 'https://api.freegenes.org/collections/';
+// FreeGenes Parts API
+const url = 'https://api.freegenes.org/parts/';
 
 let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const collections = {
-  type: new List(CollectionItemType),
+const parts = {
+  type: new List(PartType),
   resolve() {
     if (lastFetchTask) {
       return lastFetchTask;
@@ -50,4 +50,4 @@ const collections = {
   },
 };
 
-export default collections;
+export default parts;
