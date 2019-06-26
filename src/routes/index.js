@@ -25,7 +25,7 @@ const routes = {
     },
     {
       path: '/parts',
-      load: () => import(/* webpackChunkName: 'parts' */ './parts'),      
+      load: () => import(/* webpackChunkName: 'parts' */ './parts'),
     },
     {
       path: '/contact',
@@ -80,3 +80,8 @@ if (__DEV__) {
 }
 
 export default routes;
+
+//{
+//  path: '/authors',
+//  load: () => import(/* webpackChunkName: 'authors' */ './authors'),
+//},

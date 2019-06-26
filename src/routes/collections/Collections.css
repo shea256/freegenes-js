@@ -8,7 +8,7 @@
 .container {
   margin: 0 auto;
   padding: 0 0 40px;
-  max-width: var(--max-content-width);
+  //max-width: var(--max-content-width);
 }
 
 .collectionsItem {
@@ -19,20 +19,33 @@
   font-size: 1.5rem;
 }
 
-.collectionsDesc h1,
-.collectionsDesc h2,
-.collectionsDesc h3,
-.collectionsDesc h4,
-.collectionsDesc h5,
-.collectionsDesc h6 {
-  font-size: 1.125rem;
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
 }
 
-.collectionsDesc pre {
-  white-space: pre-wrap;
-  font-size: 0.875rem;
+.tableThead {}
+.tableTbody {}
+.tableTr {}
+
+.tableTh {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
 }
 
-.collectionsDesc img {
-  max-width: 100%;
+.tableTd {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.tableTdBreak {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+
+  max-width: 800px;
+  word-break: break-all;
 }

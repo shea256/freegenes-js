@@ -5,7 +5,7 @@ import {
   GraphQLList as ListType,
 } from 'graphql';
 
-const CollectionItemType = new ObjectType({
+const CollectionType = new ObjectType({
   name: 'CollectionItem',
   fields: {
     name: { type: new NonNull(StringType) },
@@ -18,4 +18,4 @@ const CollectionItemType = new ObjectType({
   },
 });
 
-export default CollectionItemType;
+export default CollectionType;

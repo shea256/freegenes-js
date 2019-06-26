@@ -12,8 +12,7 @@ import {
   GraphQLObjectType as ObjectType,
 } from 'graphql';
 
-import me from './queries/me';
-import news from './queries/news';
+//import me from './queries/me';
 import collections from './queries/collections';
 import parts from './queries/parts';
 
@@ -21,8 +20,7 @@ const schema = new Schema({
   query: new ObjectType({
     name: 'Query',
     fields: {
-      me,
-      news,
+      //me,
       collections,
       parts,
     },

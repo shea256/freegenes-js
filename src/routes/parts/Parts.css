@@ -11,17 +11,9 @@
   color: #212529;
 }
 
-.tableThead {
-  
-}
-
-.tableTbody {
-
-}
-
-.tableTr {
-
-}
+.tableThead {}
+.tableTbody {}
+.tableTr {}
 
 .tableTh {
   padding: 0.75rem;
