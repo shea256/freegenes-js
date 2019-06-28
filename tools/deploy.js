@@ -14,21 +14,21 @@ import { makeDir, moveDir, cleanDir } from './lib/fs';
 import run from './run';
 
 // GitHub Pages
-const remote = {
+/*const remote = {
   name: 'github',
-  url: 'https://github.com/<user>/<repo>.git',
+  url: 'https://github.com/shea256/freegenes-ui.git',
   branch: 'gh-pages',
-  website: 'https://<user>.github.io/<repo>/',
+  website: 'https://shea256.github.io/freegenes-ui/',
   static: true,
-};
+};*/
 
 // Heroku
-// const remote = {
-//   name: 'heroku',
-//   url: 'https://git.heroku.com/<app>.git',
-//   branch: 'master',
-//   website: 'https://<app>.herokuapp.com',
-// };
+const remote = {
+  name: 'heroku',
+  url: 'https://git.heroku.com/freegenes.git',
+  branch: 'master',
+  website: 'https://freegenes.herokuapp.com',
+};
 
 // Azure Web Apps
 // const remote = {
