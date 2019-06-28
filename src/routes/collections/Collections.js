@@ -37,7 +37,11 @@ class Collections extends React.Component {
               return (
                 <tr className={s.tableTr} key={item.uuid}>
                   <th className={s.tableTh} scope="row">{i}</th>
-                  <td className={s.tableTd}>{item.name}</td>
+                  <td className={s.tableTd}>
+                    <a href={`/collections/${item.uuid}`}>
+                      {item.name}
+                    </a>
+                  </td>
                   <td className={s.tableTd}>{item.time_created}</td>
                   <td className={s.tableTd}>{item.tags.join(', ')}</td>
                   <td className={s.tableTd}>{item.readme}</td>

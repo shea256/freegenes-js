@@ -1,0 +1,10 @@
+@import '../../components/variables.css';
+
+.root {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pBreak {
+	word-break: break-all;
+}

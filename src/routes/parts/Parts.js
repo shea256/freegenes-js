@@ -46,7 +46,11 @@ class Parts extends React.Component {
                   return (
                     <tr className={s.tableTr} key={item.uuid}>
                       <th className={s.tableTh} scope="row">{i}</th>
-                      <td className={s.tableTd}>{item.name}</td>
+                      <td className={s.tableTd}>
+                        <a href={`/parts/${item.uuid}`}>
+                          {item.name}
+                        </a>
+                      </td>
                       <td className={s.tableTd}>{item.gene_id}</td>
                       <td className={s.tableTd}>{item.part_type}</td>
                       <td className={s.tableTd}>{item.status}</td>

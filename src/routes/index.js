@@ -24,8 +24,16 @@ const routes = {
       load: () => import(/* webpackChunkName: 'collections' */ './collections'),
     },
     {
+      path: '/collections/:id',
+      load: () => import(/* webpackChunkName: 'collection-details' */ './collection-details'),
+    },
+    {
       path: '/parts',
       load: () => import(/* webpackChunkName: 'parts' */ './parts'),
+    },
+    {
+      path: '/parts/:id',
+      load: () => import(/* webpackChunkName: 'part-details' */ './part-details')
     },
     {
       path: '/authors',
