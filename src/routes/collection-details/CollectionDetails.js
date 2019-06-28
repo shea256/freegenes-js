@@ -20,7 +20,7 @@ class CollectionDetails extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>Collection: {collection.name}</h1>
+          <h1>{collection.name}</h1>
 
           <h4>Time Created</h4>
 

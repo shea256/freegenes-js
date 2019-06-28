@@ -35,7 +35,11 @@ class Authors extends React.Component {
               return (
                 <tr className={s.tableTr} key={item.uuid}>
                   <th className={s.tableTh} scope="row">{i}</th>
-                  <td className={s.tableTd}>{item.name}</td>
+                  <td className={s.tableTd}>
+                    <a href={`/authors/${item.uuid}`}>
+                      {item.name}
+                    </a>
+                  </td>
                   <td className={s.tableTd}>{item.email}</td>
                   <td className={s.tableTd}>{item.affiliation}</td>
                 </tr>

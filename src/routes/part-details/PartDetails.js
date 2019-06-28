@@ -18,6 +18,7 @@ class PartDetails extends React.Component {
       status: PropTypes.string,
       time_created: PropTypes.string.isRequired,
       uuid: PropTypes.string.isRequired,
+      author_uuid: PropTypes.string,
     }).isRequired
   };
 
@@ -26,7 +27,7 @@ class PartDetails extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>Gene Part: {part.name}</h1>
+          <h1>{part.name}</h1>
 
           <h4>Parent Collection</h4>
 
@@ -36,10 +37,14 @@ class PartDetails extends React.Component {
             </a>
           </p>
 
-          <h4>Status</h4>
+          <h4>Description</h4>
 
           <p>
-            {part.status}
+            {part.status ? (
+              part.status
+            ) : (
+              <i>- no status found -</i>
+            )}
           </p>
 
           <h4>Part Type</h4>
@@ -57,13 +62,25 @@ class PartDetails extends React.Component {
           <h4>Description</h4>
 
           <p>
-            {part.description}
+            {part.description ? (
+              part.description
+            ) : (
+              <i>- no description found -</i>
+            )}
           </p>
 
           <h4>Gene ID</h4>
 
           <p>
             {part.gene_id}
+          </p>
+
+          <h4>Author</h4>
+
+          <p>
+            <a href={`/authors/${part.author_uuid}`}>
+              {part.author_uuid}
+            </a>
           </p>
 
           <h4>Tags</h4>

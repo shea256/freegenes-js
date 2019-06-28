@@ -40,6 +40,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'authors' */ './authors'),
     },
     {
+      path: '/authors/:id',
+      load: () => import(/* webpackChunkName: 'author-details' */ './author-details'),
+    },
+    {
       path: '/contact',
       load: () => import(/* webpackChunkName: 'contact' */ './contact'),
     },
