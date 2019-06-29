@@ -70,9 +70,7 @@ class WellDetails extends React.Component {
           <ul>
           {well.samples.map(sampleUUID => (
             <li>
-              <a href={`/samples/${sampleUUID}`}>
-                {sampleUUID}
-              </a>
+              {sampleUUID}
             </li>
           ))}
           </ul>
