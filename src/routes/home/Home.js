@@ -12,6 +12,10 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
 class Home extends React.Component {
   static propTypes = {
   };
@@ -20,12 +24,24 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
+          
           <div className={s.banner}>
             <h1 className={s.bannerTitle}>The DNA Commons</h1>
             <p className={s.bannerDesc}>
               DNA sequences in the public domain, for all to browse and order
             </p>
           </div>
+
+          <div>
+            {['collections', 'parts', 'authors', 'plates', 'wells'].map(item => (
+              <p>
+                <a href={`/${item}`}>
+                  {item.capitalize()}
+                </a>
+              </p>
+            ))}
+          </div>
+
         </div>
       </div>
     );

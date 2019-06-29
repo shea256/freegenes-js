@@ -1,0 +1,38 @@
+@import '../../components/variables.css';
+
+.root {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.tableThead {}
+.tableTbody {}
+.tableTr {}
+
+.tableTh {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.tableTd {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.tableTdBreak {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+
+  max-width: 800px;
+  word-break: break-all;
+}
