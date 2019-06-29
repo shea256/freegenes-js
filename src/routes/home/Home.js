@@ -32,6 +32,9 @@ class Home extends React.Component {
             </p>
           </div>
 
+          <h2>
+            Resources
+          </h2>
           <div>
             {['collections', 'parts', 'authors', 'plates', 'wells'].map(item => (
               <p>

@@ -22,7 +22,7 @@ class PlateDetails extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>{plate.plate_name}</h1>
+          <h1>Plate {plate.plate_name}</h1>
 
           <h4>Form</h4>
 

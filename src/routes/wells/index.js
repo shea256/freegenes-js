@@ -1,21 +1,21 @@
 import React from 'react';
-import Plates from './Plates';
+import Wells from './Wells';
 import Layout from '../../components/Layout';
 
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{plates{breadcrumb,plate_form,plate_name,plate_type,plate_vendor_id,protocol_uuid,status,uuid}}',
+      query: '{wells{address,media,organism,organism_uuid,plate_uuid,quantity,uuid,volume}}',
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.plates) throw new Error('Failed to load plates.');
+  if (!data || !data.wells) throw new Error('Failed to load wells.');
   return {
-    title: 'FreeGenes Plates',
-    chunks: ['plates'],
+    title: 'FreeGenes Wells',
+    chunks: ['wells'],
     component: (
       <Layout>
-        <Plates plates={data.plates} />
+        <Wells wells={data.wells} />
       </Layout>
     ),
   };
