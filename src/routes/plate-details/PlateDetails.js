@@ -14,11 +14,14 @@ class PlateDetails extends React.Component {
       protocol_uuid: PropTypes.string,
       status: PropTypes.string.isRequired,
       uuid: PropTypes.string.isRequired,
-    }).isRequired
+      wells: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    wells: PropTypes.object.isRequired
   };
 
   render() {
     const plate = this.props.plate
+    const wells = this.props.wells
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -68,7 +71,7 @@ class PlateDetails extends React.Component {
           {plate.wells.map(wellUUID => (
             <li>
               <a href={`/wells/${wellUUID}`}>
-                {wellUUID}
+                {plate.plate_name} - {wells[wellUUID].address}
               </a>
             </li>
           ))}

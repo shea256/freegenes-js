@@ -17,7 +17,9 @@ import collections from './queries/collections';
 import parts from './queries/parts';
 import authors from './queries/authors';
 import plates from './queries/plates';
+import plateDetails from './queries/plateDetails';
 import wells from './queries/wells';
+import wellDetails from './queries/wellDetails';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -28,7 +30,9 @@ const schema = new Schema({
       parts,
       authors,
       plates,
-      wells
+      plateDetails,
+      wells,
+      wellDetails,
     },
   }),
 });

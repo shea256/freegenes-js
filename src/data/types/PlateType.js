@@ -2,6 +2,7 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
+  GraphQLList as ListType,
 } from 'graphql';
 
 const PlateType = new ObjectType({
@@ -15,6 +16,7 @@ const PlateType = new ObjectType({
     protocol_uuid: { type: StringType },
     status: { type: new NonNull(StringType) },
     uuid: { type: new NonNull(StringType) },
+    wells: { type: new ListType(StringType) },
   },
 });
 

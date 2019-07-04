@@ -12,14 +12,19 @@ class WellDetails extends React.Component {
       organism_uuid: PropTypes.string,
       plate_uuid: PropTypes.string.isRequired,
       quantity: PropTypes.string,
-      samples: PropTypes.string.isRequired,
+      samples: PropTypes.arrayOf(PropTypes.string).isRequired,
       uuid: PropTypes.string.isRequired,
-      volume: PropTypes.string.isRequired,
+      volume: PropTypes.number.isRequired,
+      plate: PropTypes.shape({
+        plate_name: PropTypes.string.isRequired,
+        uuid: PropTypes.string.isRequired,
+      }),
     }).isRequired
   };
 
   render() {
     const well = this.props.well
+    const plate = well.plate
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -27,11 +32,13 @@ class WellDetails extends React.Component {
 
           <h4>Plate</h4>
 
+          {plate ? (
           <p>
-            <a href={`/plates/${well.plate_uuid}`}>
-              {well.plate_uuid}
+            <a href={`/plates/${plate.uuid}`}>
+              {plate.plate_name}
             </a>
-          </p>
+          </p>            
+          ) : null}
 
           <h4>Media</h4>
 

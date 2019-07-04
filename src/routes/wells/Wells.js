@@ -17,9 +17,12 @@ class Wells extends React.Component {
         volume: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    plates: PropTypes.object.isRequired
   };
 
   render() {
+    const wells = this.props.wells
+    const plates = this.props.plates
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -37,14 +40,14 @@ class Wells extends React.Component {
               </tr>
             </thead>
             <tbody className={s.tableTbody}>
-              {this.props.wells.map((item, i) => {
+              {wells.map((item, i) => {
                 if (item) {
                   return (
                     <tr className={s.tableTr} key={item.uuid}>
                       <th className={s.tableTh} scope="row">{i}</th>
                       <td className={s.tableTd}>
                         <a href={`/wells/${item.uuid}`}>
-                          {item.address} : {item.plate_uuid}
+                          {plates[item.plate_uuid].plate_name} - {item.address}
                         </a>
                       </td>
                       <td className={s.tableTd}>{item.media}</td>

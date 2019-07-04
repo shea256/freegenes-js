@@ -2,7 +2,8 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
-  GraphQLFloat as FloatType
+  GraphQLFloat as FloatType,
+  GraphQLList as ListType,
 } from 'graphql';
 
 const WellType = new ObjectType({
@@ -16,6 +17,7 @@ const WellType = new ObjectType({
     quantity: { type: StringType },
     uuid: { type: new NonNull(StringType) },
     volume: { type: new NonNull(FloatType) },
+    samples: { type: new ListType(StringType) },
   },
 });
 
