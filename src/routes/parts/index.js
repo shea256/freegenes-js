@@ -6,7 +6,7 @@ async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
-        allParts {
+        allParts(first: 10) {
           collection_id,description,gene_id,name,original_sequence,part_type,status,tags,time_created,uuid
         }
       }`,

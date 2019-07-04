@@ -22,35 +22,36 @@ class Collections extends React.Component {
         <div className={s.container}>
           <h1>Gene Collections</h1>
 
-          <table className={s.table}>
-            <thead className={s.tableThead}>
-              <tr className={s.tableTr}>
-                <th className={s.tableTh} scope="col">#</th>
-                <th className={s.tableTh} scope="col">Name</th>
-                <th className={s.tableTh} scope="col">Time Created</th>
-                <th className={s.tableTh} scope="col">Tags</th>
-                <th className={s.tableTh} scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody className={s.tableTbody}>
-              {this.props.collections.map((item, i) => { if (item) {
-              return (
-                <tr className={s.tableTr} key={item.uuid}>
-                  <th className={s.tableTh} scope="row">{i}</th>
-                  <td className={s.tableTd}>
-                    <a href={`/collections/${item.uuid}`}>
-                      {item.name}
-                    </a>
-                  </td>
-                  <td className={s.tableTd}>{item.time_created}</td>
-                  <td className={s.tableTd}>{item.tags.join(', ')}</td>
-                  <td className={s.tableTd}>{item.readme}</td>
+          <div className="table-responsive">
+            <table className={`table ${s.table}`}>
+              <thead className={s.tableThead}>
+                <tr className={s.tableTr}>
+                  <th className={s.tableTh} scope="col">#</th>
+                  <th className={s.tableTh} scope="col">Name</th>
+                  <th className={s.tableTh} scope="col">Time Created</th>
+                  <th className={s.tableTh} scope="col">Tags</th>
+                  <th className={s.tableTh} scope="col">Description</th>
                 </tr>
-              )
-              }})}
-            </tbody>
-          </table>
-
+              </thead>
+              <tbody className={s.tableTbody}>
+                {this.props.collections.map((item, i) => { if (item) {
+                return (
+                  <tr className={s.tableTr} key={item.uuid}>
+                    <th className={s.tableTh} scope="row">{i}</th>
+                    <td className={s.tableTd}>
+                      <a href={`/collections/${item.uuid}`}>
+                        {item.name}
+                      </a>
+                    </td>
+                    <td className={s.tableTd}>{item.time_created}</td>
+                    <td className={s.tableTd}>{item.tags.join(', ')}</td>
+                    <td className={s.tableTd}>{item.readme}</td>
+                  </tr>
+                )
+                }})}
+              </tbody>
+            </table>
+          </div>
           
         </div>
       </div>

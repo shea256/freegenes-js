@@ -21,33 +21,34 @@ class Authors extends React.Component {
         <div className={s.container}>
           <h1>Gene Authors</h1>
 
-          <table className={s.table}>
-            <thead className={s.tableThead}>
-              <tr className={s.tableTr}>
-                <th className={s.tableTh} scope="col">#</th>
-                <th className={s.tableTh} scope="col">Name</th>
-                <th className={s.tableTh} scope="col">Email</th>
-                <th className={s.tableTh} scope="col">Affiliation</th>
-              </tr>
-            </thead>
-            <tbody className={s.tableTbody}>
-              {this.props.authors.map((item, i) => { if (item) {
-              return (
-                <tr className={s.tableTr} key={item.uuid}>
-                  <th className={s.tableTh} scope="row">{i}</th>
-                  <td className={s.tableTd}>
-                    <a href={`/authors/${item.uuid}`}>
-                      {item.name}
-                    </a>
-                  </td>
-                  <td className={s.tableTd}>{item.email}</td>
-                  <td className={s.tableTd}>{item.affiliation}</td>
+          <div className="table-responsive">
+            <table className={`table ${s.table}`}>
+              <thead className={s.tableThead}>
+                <tr className={s.tableTr}>
+                  <th className={s.tableTh} scope="col">#</th>
+                  <th className={s.tableTh} scope="col">Name</th>
+                  <th className={s.tableTh} scope="col">Email</th>
+                  <th className={s.tableTh} scope="col">Affiliation</th>
                 </tr>
-              )
-              }})}
-            </tbody>
-          </table>
-
+              </thead>
+              <tbody className={s.tableTbody}>
+                {this.props.authors.map((item, i) => { if (item) {
+                return (
+                  <tr className={s.tableTr} key={item.uuid}>
+                    <th className={s.tableTh} scope="row">{i}</th>
+                    <td className={s.tableTd}>
+                      <a href={`/authors/${item.uuid}`}>
+                        {item.name}
+                      </a>
+                    </td>
+                    <td className={s.tableTd}>{item.email}</td>
+                    <td className={s.tableTd}>{item.affiliation}</td>
+                  </tr>
+                )
+                }})}
+              </tbody>
+            </table>
+          </div>
           
         </div>
       </div>
