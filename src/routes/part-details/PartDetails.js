@@ -103,8 +103,10 @@ class PartDetails extends React.Component {
 
           {part.tags && part.tags.length > 0 ? (
             <ul>
-            {part.tags.map(tag => (
-              <li>{tag}</li>
+            {part.tags.map((tag, index) => (
+              <li key={index}>
+                {tag}
+              </li>
             ))}
             </ul>
           ) : (
