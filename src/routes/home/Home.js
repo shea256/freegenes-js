@@ -36,8 +36,8 @@ class Home extends React.Component {
             Resources
           </h2>
           <div>
-            {['collections', 'parts', 'authors', 'plates', 'wells'].map(item => (
-              <p>
+            {['collections', 'parts', 'authors', 'plates', 'wells'].map((item, index) => (
+              <p key={index}>
                 <a href={`/${item}`}>
                   {item.capitalize()}
                 </a>

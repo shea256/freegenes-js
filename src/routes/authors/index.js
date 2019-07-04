@@ -5,17 +5,22 @@ import Layout from '../../components/Layout';
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{authors{affiliation,email,name,uuid}}',
+      query: `{
+        allAuthors {
+          affiliation,email,name,uuid
+        }
+      }`,
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.authors) throw new Error('Failed to load authors.');
+  if (!data || !data.allAuthors) throw new Error('Failed to load authors.');
+  
   return {
     title: 'FreeGenes Authors',
     chunks: ['authors'],
     component: (
       <Layout>
-        <Authors authors={data.authors} />
+        <Authors authors={data.allAuthors} />
       </Layout>
     ),
   };

@@ -14,7 +14,7 @@ class Wells extends React.Component {
         plate_uuid: PropTypes.string.isRequired,
         quantity: PropTypes.string,
         uuid: PropTypes.string.isRequired,
-        volume: PropTypes.string.isRequired,
+        volume: PropTypes.number.isRequired,
       }),
     ).isRequired,
     plates: PropTypes.object.isRequired

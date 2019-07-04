@@ -1,16 +1,16 @@
 import { GraphQLList as List } from 'graphql';
 import fetch from 'node-fetch';
-import AuthorType from '../types/AuthorType';
+import CollectionType from '../types/CollectionType';
 
-// FreeGenes Authors API
-const url = 'https://api.freegenes.org/authors/';
+// FreeGenes Collections API
+const url = 'https://api.freegenes.org/collections/';
 
 let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const authors = {
-  type: new List(AuthorType),
+const allCollections = {
+  type: new List(CollectionType),
   resolve() {
     if (lastFetchTask) {
       return lastFetchTask;
@@ -41,4 +41,4 @@ const authors = {
   },
 };
 
-export default authors;
+export default allCollections;

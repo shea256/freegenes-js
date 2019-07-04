@@ -68,8 +68,8 @@ class PlateDetails extends React.Component {
           <h4>Wells</h4>
 
           <ol>
-          {plate.wells.map(wellUUID => (
-            <li>
+          {plate.wells.map((wellUUID, index) => (
+            <li key={index}>
               <a href={`/wells/${wellUUID}`}>
                 {plate.plate_name} - {wells[wellUUID].address}
               </a>

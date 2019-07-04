@@ -1,16 +1,16 @@
 import { GraphQLList as List } from 'graphql';
 import fetch from 'node-fetch';
-import CollectionType from '../types/CollectionType';
+import PlateType from '../types/PlateType';
 
-// FreeGenes Collections API
-const url = 'https://api.freegenes.org/collections/';
+// FreeGenes Plates API
+const url = 'https://api.freegenes.org/plates/';
 
 let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const collections = {
-  type: new List(CollectionType),
+const allPlates = {
+  type: new List(PlateType),
   resolve() {
     if (lastFetchTask) {
       return lastFetchTask;
@@ -41,4 +41,4 @@ const collections = {
   },
 };
 
-export default collections;
+export default allPlates;

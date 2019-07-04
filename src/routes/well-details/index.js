@@ -8,23 +8,23 @@ async function action({ fetch, params }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
-        wellDetails(id: "${params.id}") {
+        well(id: "${params.id}") {
           address,media,organism,organism_uuid,plate_uuid,quantity,uuid,volume,samples
         }
       }`,
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.wellDetails) throw new Error('Failed to load well.');
+  if (!data || !data.well) throw new Error('Failed to load well.');
 
   // set the well
-  let well = data.wellDetails
+  let well = data.well
 
   // get the plate
   const resp2 = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
-        plateDetails(id: "${well.plate_uuid}") {
+        plate(id: "${well.plate_uuid}") {
           uuid,plate_name
         }
       }`
@@ -32,10 +32,10 @@ async function action({ fetch, params }) {
   });
   const resp2JSON = await resp2.json();
   const data2 = resp2JSON.data
-  if (!data2 || !data2.plateDetails) throw new Error('Failed to load plates.');
+  if (!data2 || !data2.plate) throw new Error('Failed to load plates.');
 
   // set the plate
-  well.plate = data2.plateDetails
+  well.plate = data2.plate
 
   return {
     title: `Well ${well.address}`,

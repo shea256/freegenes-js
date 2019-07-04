@@ -51,8 +51,8 @@ class CollectionDetails extends React.Component {
           <h4>Parts</h4>
 
           <ul>
-          {collection.parts.map(partUUID => (
-            <li>
+          {collection.parts.map((partUUID, index) => (
+            <li key={index}>
               <a href={`/parts/${partUUID}`}>
                 {partUUID}
               </a>

@@ -5,17 +5,22 @@ import Layout from '../../components/Layout';
 async function action({ fetch }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{parts{collection_id,description,gene_id,name,original_sequence,part_type,status,tags,time_created,uuid}}',
+      query: `{
+        allParts {
+          collection_id,description,gene_id,name,original_sequence,part_type,status,tags,time_created,uuid
+        }
+      }`,
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.parts) throw new Error('Failed to load parts.');
+  if (!data || !data.allParts) throw new Error('Failed to load parts.');
+  
   return {
     title: 'FreeGenes Parts',
     chunks: ['parts'],
     component: (
       <Layout>
-        <Parts parts={data.parts} />
+        <Parts parts={data.allParts} />
       </Layout>
     ),
   };

@@ -9,7 +9,7 @@ let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const wells = {
+const allWells = {
   type: new List(WellType),
   resolve() {
     if (lastFetchTask) {
@@ -41,4 +41,4 @@ const wells = {
   },
 };
 
-export default wells;
+export default allWells;

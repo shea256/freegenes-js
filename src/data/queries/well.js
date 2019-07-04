@@ -2,13 +2,13 @@ import {
   GraphQLString as StringType,
 } from 'graphql';
 import fetch from 'node-fetch';
-import PlateType from '../types/PlateType';
+import WellType from '../types/WellType';
 
-// FreeGenes Plate Details API
-const url = 'https://api.freegenes.org/plates/full/';
+// FreeGenes Well Details API
+const url = 'https://api.freegenes.org/wells/full/';
 
-const plateDetails = {
-  type: new Object(PlateType),
+const well = {
+  type: new Object(WellType),
   args: {
     id: { type: StringType },
   },
@@ -24,4 +24,4 @@ const plateDetails = {
   },
 };
 
-export default plateDetails;
+export default well;

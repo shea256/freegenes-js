@@ -13,26 +13,27 @@ import {
 } from 'graphql';
 
 //import me from './queries/me';
-import collections from './queries/collections';
-import parts from './queries/parts';
-import authors from './queries/authors';
-import plates from './queries/plates';
-import plateDetails from './queries/plateDetails';
-import wells from './queries/wells';
-import wellDetails from './queries/wellDetails';
+import allAuthors from './queries/allAuthors';
+import allCollections from './queries/allCollections';
+import allParts from './queries/allParts';
+
+import allPlates from './queries/allPlates';
+import allWells from './queries/allWells';
+
+import plate from './queries/plate';
+import well from './queries/well';
 
 const schema = new Schema({
   query: new ObjectType({
     name: 'Query',
     fields: {
-      //me,
-      collections,
-      parts,
-      authors,
-      plates,
-      plateDetails,
-      wells,
-      wellDetails,
+      allAuthors,
+      allCollections,
+      allParts,
+      allPlates,
+      allWells,
+      plate,
+      well,
     },
   }),
 });
