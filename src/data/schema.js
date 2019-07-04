@@ -16,10 +16,12 @@ import {
 import allAuthors from './queries/allAuthors';
 import allCollections from './queries/allCollections';
 import allParts from './queries/allParts';
-
 import allPlates from './queries/allPlates';
 import allWells from './queries/allWells';
 
+import author from './queries/author';
+import collection from './queries/collection';
+import part from './queries/part';
 import plate from './queries/plate';
 import well from './queries/well';
 
@@ -32,6 +34,9 @@ const schema = new Schema({
       allParts,
       allPlates,
       allWells,
+      author,
+      collection,
+      part,
       plate,
       well,
     },

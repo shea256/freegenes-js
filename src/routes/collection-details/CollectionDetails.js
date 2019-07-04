@@ -12,15 +12,23 @@ class CollectionDetails extends React.Component {
       uuid: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string),
       parts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    }).isRequired
+    }).isRequired,
+    parts: PropTypes.object.isRequired
   };
 
   render() {
     const collection = this.props.collection
+    const parts = this.props.parts
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{collection.name}</h1>
+
+          <h4>Description</h4>
+
+          <p>
+            {collection.readme}
+          </p>
 
           <h4>Time Created</h4>
 
@@ -42,19 +50,13 @@ class CollectionDetails extends React.Component {
             </p>
           )}
 
-          <h4>Description</h4>
-
-          <p>
-            {collection.readme}
-          </p>
-
           <h4>Parts</h4>
 
           <ul>
           {collection.parts.map((partUUID, index) => (
             <li key={index}>
               <a href={`/parts/${partUUID}`}>
-                {partUUID}
+                {parts[partUUID].name}
               </a>
             </li>
           ))}

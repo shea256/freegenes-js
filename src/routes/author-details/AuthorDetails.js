@@ -10,11 +10,14 @@ class AuthorDetails extends React.Component {
       email: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       uuid: PropTypes.string.isRequired,
-    }).isRequired
+      parts: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    parts: PropTypes.object.isRequired
   };
 
   render() {
     const author = this.props.author
+    const parts = this.props.parts
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -43,10 +46,10 @@ class AuthorDetails extends React.Component {
           <h4>Parts</h4>
 
           <ul>
-          {author.parts.map(partUUID => (
-            <li>
+          {author.parts.map((partUUID, index) => (
+            <li key={index}>
               <a href={`/parts/${partUUID}`}>
-                {partUUID}
+                {parts[partUUID].name}
               </a>
             </li>
           ))}

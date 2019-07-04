@@ -76,7 +76,7 @@ class WellDetails extends React.Component {
 
           <ul>
           {well.samples.map(sampleUUID => (
-            <li>
+            <li key={sampleUUID}>
               {sampleUUID}
             </li>
           ))}

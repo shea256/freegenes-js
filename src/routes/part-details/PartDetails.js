@@ -19,25 +19,71 @@ class PartDetails extends React.Component {
       time_created: PropTypes.string.isRequired,
       uuid: PropTypes.string.isRequired,
       author_uuid: PropTypes.string,
-    }).isRequired
+    }).isRequired,
+    collections: PropTypes.object.isRequired,
+    authors: PropTypes.object.isRequired
   };
 
   render() {
     const part = this.props.part
+    const collections = this.props.collections
+    const authors = this.props.authors
+
+    const collection = part.collection_id in collections ? collections[part.collection_id] : null
+    const author = part.author_uuid in authors ? authors[part.author_uuid] : null
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{part.name}</h1>
 
+          <h4>Gene ID</h4>
+
+          <p>
+            {part.gene_id}
+          </p>
+
           <h4>Parent Collection</h4>
 
           <p>
-            <a href={`/collections/${part.collection_id}`}>
-              {part.collection_id}
+            { collection ? (
+            <a href={`/collections/${collection.uuid}`}>
+              {collection.name}
             </a>
+            ) : (
+              <i>- no collection found -</i>
+            )}
           </p>
 
           <h4>Description</h4>
+
+          <p>
+            {part.description ? (
+              part.description
+            ) : (
+              <i>- no description found -</i>
+            )}
+          </p>
+
+          <h4>Time Created</h4>
+
+          <p>
+            {part.time_created}
+          </p>
+
+          <h4>Author</h4>
+
+          <p>
+            { author ? (
+            <a href={`/authors/${author.uuid}`}>
+              {author.name}
+            </a>
+            ) : (
+              <i>- no author found -</i>
+            )}
+          </p>
+
+          <h4>Status</h4>
 
           <p>
             {part.status ? (
@@ -53,39 +99,9 @@ class PartDetails extends React.Component {
             {part.part_type}
           </p>
 
-          <h4>Time Created</h4>
-
-          <p>
-            {part.time_created}
-          </p>
-
-          <h4>Description</h4>
-
-          <p>
-            {part.description ? (
-              part.description
-            ) : (
-              <i>- no description found -</i>
-            )}
-          </p>
-
-          <h4>Gene ID</h4>
-
-          <p>
-            {part.gene_id}
-          </p>
-
-          <h4>Author</h4>
-
-          <p>
-            <a href={`/authors/${part.author_uuid}`}>
-              {part.author_uuid}
-            </a>
-          </p>
-
           <h4>Tags</h4>
 
-          {part.tags.length > 0 ? (
+          {part.tags && part.tags.length > 0 ? (
             <ul>
             {part.tags.map(tag => (
               <li>{tag}</li>

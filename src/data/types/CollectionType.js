@@ -15,6 +15,7 @@ const CollectionType = new ObjectType({
     time_created: { type: new NonNull(StringType) },
     time_updated: { type: StringType },
     uuid: { type: new NonNull(StringType) },
+    parts: { type: new ListType(StringType) },
   },
 });
 

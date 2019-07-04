@@ -21,7 +21,7 @@ async function action({ fetch, params }) {
   if (!data.plate) throw new Error('Failed to load plate.');
   if (!data.allWells) throw new Error('Failed to load wells.');
 
-  let plate = data.plate
+  const plate = data.plate
 
   let wells = {}
   data.allWells.map(well => {
