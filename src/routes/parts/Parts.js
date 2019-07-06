@@ -22,6 +22,8 @@ class Parts extends React.Component {
   };
 
   render() {
+    const parts = this.props.parts
+    const { first, skip, page } = this.props.variables
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -42,11 +44,11 @@ class Parts extends React.Component {
                 </tr>
               </thead>
               <tbody className={s.tableTbody}>
-                {this.props.parts.map((item, i) => {
+                {parts.map((item, i) => {
                   if (item) {
                     return (
                       <tr className={s.tableTr} key={item.uuid}>
-                        <th className={s.tableTh} scope="row">{i}</th>
+                        <th className={s.tableTh} scope="row">{i+1+skip}</th>
                         <td className={s.tableTd}>
                           <a href={`/parts/${item.uuid}`}>
                             {item.name}
@@ -59,8 +61,12 @@ class Parts extends React.Component {
                         <td className={s.tableTd}>{item.tags.join(', ')}</td>
                         <td className={s.tableTdBreak}>
                           {item.original_sequence.slice(0,40)}
-                          &nbsp;...&nbsp;
-                          {item.original_sequence.slice(-40)}
+                          {item.original_sequence.length > 40 ? (
+                            <span>
+                              <br/>
+                              (and {item.original_sequence.length-40} more base pairs)
+                            </span>                            
+                          ) : null }
                         </td>
                       </tr>
                     )
@@ -69,6 +75,25 @@ class Parts extends React.Component {
               </tbody>
             </table>
           </div>
+
+          <p>
+            {page > 1 ? (
+            <a href={`/parts?page=${page-1}`}>
+              Previous {first} results
+            </a>
+            ) : null }
+
+            {page > 1 && parts.length === first ? (
+              <span>&nbsp;|&nbsp;</span>
+            ) : null }
+
+            { parts.length === first ? (
+            <a href={`/parts?page=${page+1}`}>
+              Next {first} results
+            </a>
+            ) : null }
+            
+          </p>
           
         </div>
       </div>
