@@ -7,7 +7,9 @@ async function action({ fetch, params }) {
     body: JSON.stringify({
       query: `{
         part(id: "${params.id}") {
-          author_uuid,collection_id,description,gene_id,name,original_sequence,optimized_sequence,synthesized_sequence,part_type,status,tags,time_created,uuid
+          author_uuid,collection_id,description,gene_id,name,original_sequence,
+          optimized_sequence,synthesized_sequence,part_type,status,tags,
+          time_created,uuid
         }
         allCollections {
           uuid,name

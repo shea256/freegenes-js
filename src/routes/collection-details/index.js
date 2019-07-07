@@ -16,6 +16,7 @@ async function action({ fetch, params }) {
     }),
   });
   const { data } = await resp.json();
+  console.log(data.allParts)
   if (!data) throw new Error('Failed to load data.');
   if (!data.collection) throw new Error('Failed to load collection.');
   if (!data.allParts) throw new Error('Failed to load parts.');
