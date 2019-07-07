@@ -28,7 +28,6 @@ async function action({ fetch, params, query }) {
       variables: { first, skip }
     }),
   });
-  //console.log(resp.json())
   const { data } = await resp.json();
   if (!data || !data.allParts) throw new Error('Failed to load parts.');
   

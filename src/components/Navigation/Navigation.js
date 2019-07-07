@@ -13,45 +13,58 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
 
+import {
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink
+} from 'reactstrap';
+
 class Navigation extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.toggle = this.toggle.bind(this)
+    this.state = {
+      isOpen: false
+    }
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+
   render() {
     return (
-      <div className={s.root} role="navigation">
-        <Link className={s.link} to="/about">
-          About
-        </Link>
-        <Link className={s.link} to="/collections">
-          Collections
-        </Link>
-        <Link className={s.link} to="/parts">
-          Parts
-        </Link>
-        <Link className={s.link} to="/authors">
-          Authors
-        </Link>
-        <Link className={s.link} to="/plates">
-          Plates
-        </Link>
-        <Link className={s.link} to="/wells">
-          Wells
-        </Link>
+      <div>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand href="/">FreeGenes</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/about">About</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/collections">Collections</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/parts">Parts</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/Authors">Authors</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/plates">Plates</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/wells">Wells</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
   }
 }
 
 export default withStyles(s)(Navigation);
-
-/*
-<Link className={s.link} to="/contact">
-          Contact
-        </Link>
-        <span className={s.spacer}> | </span>
-        <Link className={s.link} to="/login">
-          Log in
-        </Link>
-        <span className={s.spacer}>or</span>
-        <Link className={cx(s.link, s.highlight)} to="/register">
-          Sign up
-        </Link>
-*/

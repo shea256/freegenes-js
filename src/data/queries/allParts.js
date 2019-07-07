@@ -13,8 +13,8 @@ let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
 function filterItems(items, first, skip) {
-  if (first) {
-    if (skip) {
+  if (first !== undefined) {
+    if (skip !== undefined) {
       return items.slice(skip, skip+first)
     } else {
       return items.slice(0, first)
@@ -46,7 +46,7 @@ const allParts = {
         .then(data => {
           items = data;
           lastFetchTask = null;
-          return filterItems(items);
+          return filterItems(items, first, skip);
         })
         .catch(err => {
           lastFetchTask = null;
@@ -54,7 +54,7 @@ const allParts = {
         });
 
       if (items.length) {
-        return filterItems(items);
+        return filterItems(items, first, skip);
       }
 
       return lastFetchTask;
@@ -62,7 +62,7 @@ const allParts = {
 
     // It has been less than 10 minutes since the last execution
     // Return the items from the last execution
-    return filterItems(items);
+    return filterItems(items, first, skip);
   },
 };
 
