@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Plates.css';
+import Alerts from '../../components/Alerts';
 
 class Plates extends React.Component {
   static propTypes = {
@@ -17,14 +18,19 @@ class Plates extends React.Component {
         uuid: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   render() {
+    const plates = this.props.plates
+    const errors = this.props.errors
+    
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.header}>Plates</h1>
 
+          { errors.length === 0 ? (
           <div className="table-responsive">
             <table className={`table ${s.table}`}>
               <thead className={s.tableThead}>
@@ -40,7 +46,7 @@ class Plates extends React.Component {
                 </tr>
               </thead>
               <tbody className={s.tableTbody}>
-                {this.props.plates.map((item, i) => {
+                {plates.map((item, i) => {
                   if (item) {
                     return (
                       <tr className={s.tableTr} key={item.uuid}>
@@ -63,6 +69,8 @@ class Plates extends React.Component {
               </tbody>
             </table>
           </div>
+          ) : (<Alerts errors={errors} />)}
+
         </div>
       </div>
     );

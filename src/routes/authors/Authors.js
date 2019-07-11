@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Authors.css';
+import Alerts from '../../components/Alerts';
 
 class Authors extends React.Component {
   static propTypes = {
@@ -13,14 +14,19 @@ class Authors extends React.Component {
         uuid: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   render() {
+    const authors = this.props.authors
+    const errors = this.props.errors
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>Gene Authors</h1>
 
+          {errors.length === 0 ? (
           <div className="table-responsive">
             <table className={`table ${s.table}`}>
               <thead className={s.tableThead}>
@@ -32,7 +38,7 @@ class Authors extends React.Component {
                 </tr>
               </thead>
               <tbody className={s.tableTbody}>
-                {this.props.authors.map((item, i) => { if (item) {
+                {authors.map((item, i) => { if (item) {
                 return (
                   <tr className={s.tableTr} key={item.uuid}>
                     <th className={s.tableTh} scope="row">{i}</th>
@@ -49,6 +55,7 @@ class Authors extends React.Component {
               </tbody>
             </table>
           </div>
+          ) : (<Alerts errors={errors} />)}
           
         </div>
       </div>

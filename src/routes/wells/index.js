@@ -16,21 +16,31 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data) throw new Error('Failed to load data.');
-  if (!data.allWells) throw new Error('Failed to load wells.');
-  if (!data.allPlates) throw new Error('Failed to load plates.');
-
+  let errors = []
+  let wells = []
   let plates = {}
-  data.allPlates.map(plate => {
-    plates[plate.uuid] = plate
-  })
+  if (!data) {
+    errors.push('Failed to load data.')
+  } else if (!data.allWells) {
+    errors.push('Failed to load wells.')
+  } else if (!data.allPlates) {
+    errors.push('Failed to load plates.')
+  } else if (data.allWells.length === 0) {
+    errors.push('No wells found.')
+  } else {
+    wells = data.allWells
+    plates = {}
+    data.allPlates.map(plate => {
+      plates[plate.uuid] = plate
+    })
+  }
 
   return {
     title: 'FreeGenes Wells',
     chunks: ['wells'],
     component: (
       <Layout>
-        <Wells wells={data.allWells} plates={plates} />
+        <Wells wells={wells} plates={plates} errors={errors} />
       </Layout>
     ),
   };

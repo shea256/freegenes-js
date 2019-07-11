@@ -13,14 +13,22 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.allAuthors) throw new Error('Failed to load authors.');
+  let errors = []
+  let authors = []
+  if (!data || !data.allAuthors) {
+    errors.push('Failed to load authors.')
+  } else if (data.allAuthors.length === 0) {
+    errors.push('No authors found.')
+  } else {
+    authors = data.allAuthors
+  }
   
   return {
     title: 'FreeGenes Authors',
     chunks: ['authors'],
     component: (
       <Layout>
-        <Authors authors={data.allAuthors} />
+        <Authors authors={authors} errors={errors} />
       </Layout>
     ),
   };

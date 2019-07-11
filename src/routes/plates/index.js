@@ -13,14 +13,22 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.allPlates) throw new Error('Failed to load plates.');
+  let errors = []
+  let plates = []
+  if (!data || !data.allPlates) {
+    errors.push('Failed to load plates.')
+  } else if (data.allPlates.length === 0) {
+    errors.push('No plates found.')
+  } else {
+    plates = data.allPlates
+  }
   
   return {
     title: 'FreeGenes Plates',
     chunks: ['plates'],
     component: (
       <Layout>
-        <Plates plates={data.allPlates} />
+        <Plates plates={plates} errors={errors} />
       </Layout>
     ),
   };

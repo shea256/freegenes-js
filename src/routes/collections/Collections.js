@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Collections.css';
+import Alerts from '../../components/Alerts';
 
 class Collections extends React.Component {
   static propTypes = {
@@ -14,14 +15,19 @@ class Collections extends React.Component {
         tags: PropTypes.arrayOf(PropTypes.string),
       }),
     ).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   render() {
+    const collections = this.props.collections
+    const errors = this.props.errors
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>Gene Collections</h1>
 
+          {errors.length === 0 ? (
           <div className="table-responsive">
             <table className={`table ${s.table}`}>
               <thead className={s.tableThead}>
@@ -34,7 +40,7 @@ class Collections extends React.Component {
                 </tr>
               </thead>
               <tbody className={s.tableTbody}>
-                {this.props.collections.map((item, i) => { if (item) {
+                {collections.map((item, i) => { if (item) {
                 return (
                   <tr className={s.tableTr} key={item.uuid}>
                     <th className={s.tableTh} scope="row">{i}</th>
@@ -52,6 +58,7 @@ class Collections extends React.Component {
               </tbody>
             </table>
           </div>
+          ) : (<Alerts errors={errors} />)}
           
         </div>
       </div>

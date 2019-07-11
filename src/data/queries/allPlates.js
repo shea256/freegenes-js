@@ -4,6 +4,7 @@ import PlateType from '../types/PlateType';
 
 // FreeGenes Plates API
 const url = 'https://api.freegenes.org/plates/';
+const TEN_MINUTES = 1000 * 60 * 10;
 
 let items = [];
 let lastFetchTask;
@@ -16,7 +17,7 @@ const allPlates = {
       return lastFetchTask;
     }
 
-    if (new Date() - lastFetchTime > 1000 * 60 * 10 /* 10 mins */) {
+    if (new Date() - lastFetchTime > TEN_MINUTES || items.length === 0) {
       lastFetchTime = new Date();
       lastFetchTask = fetch(url)
         .then(response => response.json())

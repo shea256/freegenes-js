@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Wells.css';
+import Alerts from '../../components/Alerts';
 
 class Wells extends React.Component {
   static propTypes = {
@@ -17,17 +18,20 @@ class Wells extends React.Component {
         volume: PropTypes.number.isRequired,
       }),
     ).isRequired,
-    plates: PropTypes.object.isRequired
+    plates: PropTypes.object.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   render() {
     const wells = this.props.wells
     const plates = this.props.plates
+    const errors = this.props.errors
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.header}>Wells</h1>
 
+          { errors.length === 0 ? (
           <div className="table-responsive">
             <table className={`table ${s.table}`}>
               <thead className={s.tableThead}>
@@ -62,6 +66,8 @@ class Wells extends React.Component {
               </tbody>
             </table>
           </div>
+          ) : (<Alerts errors={errors} />)}
+          
         </div>
       </div>
     );

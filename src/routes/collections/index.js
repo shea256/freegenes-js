@@ -13,14 +13,22 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.allCollections) throw new Error('Failed to load collections.');
+  let errors = []
+  let collections = []
+  if (!data || !data.allCollections) {
+    errors.push('Failed to load collections.')
+  } else if (data.allCollections.length === 0) {
+    errors.push('No collections found.')
+  } else {
+    collections = data.allCollections
+  }
   
   return {
     title: 'FreeGenes Collections',
     chunks: ['collections'],
     component: (
       <Layout>
-        <Collections collections={data.allCollections} />
+        <Collections collections={collections} errors={errors} />
       </Layout>
     ),
   };

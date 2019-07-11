@@ -29,14 +29,22 @@ async function action({ fetch, params, query }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.allParts) throw new Error('Failed to load parts.');
+  let parts = []
+  let errors = []
+  if (!data || !data.allParts) {
+    errors.push('Failed to load parts.')
+  } else if (data.allParts.length === 0) {
+    errors.push('No parts found.')
+  } else {
+    parts = data.allParts
+  }
   
   return {
     title: 'FreeGenes Parts',
     chunks: ['parts'],
     component: (
       <Layout>
-        <Parts parts={data.allParts} variables={{ first, skip, page }} />
+        <Parts parts={parts} variables={{ first, skip, page }} errors={errors} />
       </Layout>
     ),
   };

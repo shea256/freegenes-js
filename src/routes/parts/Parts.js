@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Parts.css';
+import Alerts from '../../components/Alerts';
 
 class Parts extends React.Component {
   static propTypes = {
@@ -19,16 +20,20 @@ class Parts extends React.Component {
         uuid: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   render() {
     const parts = this.props.parts
+    const errors = this.props.errors
     const { first, skip, page } = this.props.variables
+    
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.header}>Gene Parts</h1>
 
+          {errors.length === 0 ? (
           <div className="table-responsive">
             <table className={`table ${s.table}`}>
               <thead className={s.tableThead}>
@@ -75,6 +80,7 @@ class Parts extends React.Component {
               </tbody>
             </table>
           </div>
+          ) : (<Alerts errors={errors} />)}
 
           <p>
             {page > 1 ? (
