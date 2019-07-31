@@ -28,38 +28,36 @@ class Collections extends React.Component {
           <h1>Gene Collections</h1>
 
           {errors.length === 0 ? (
-          <div className="table-responsive">
-            <table className={`table ${s.table}`}>
-              <thead className={s.tableThead}>
-                <tr className={s.tableTr}>
-                  <th className={s.tableTh} scope="col">#</th>
-                  <th className={s.tableTh} scope="col">Name</th>
-                  <th className={s.tableTh} scope="col">Time Created</th>
-                  <th className={s.tableTh} scope="col">Tags</th>
-                  <th className={s.tableTh} scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody className={s.tableTbody}>
-                {collections.map((item, i) => { if (item) {
-                return (
-                  <tr className={s.tableTr} key={item.uuid}>
-                    <th className={s.tableTh} scope="row">{i}</th>
-                    <td className={s.tableTd}>
-                      <a href={`/collections/${item.uuid}`}>
-                        {item.name}
-                      </a>
-                    </td>
-                    <td className={s.tableTd}>{item.time_created}</td>
-                    <td className={s.tableTd}>{item.tags.join(', ')}</td>
-                    <td className={s.tableTd}>{item.readme}</td>
-                  </tr>
-                )
-                }})}
-              </tbody>
-            </table>
+          <div className="row" style={{ marginTop: '30px' }}>
+          {collections.map((item, i) => { if (item) {
+            return (
+              <div className="col-md-4">
+                <div className="card" style={{ marginBottom: '30px' }}>
+                  <div className="card-body">
+                    <a href={`/collections/${item.uuid}`}>
+                    <h5 className="card-title">
+                      {item.name}
+                    </h5>
+                    </a>
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      Created on {item.time_created}
+                    </h6>
+                    <p className="card-text">
+                      {
+                        item.readme !== "Todo" ?
+                        item.readme.slice(0, 250) :
+                        <i>(no description found)</i>
+                      }
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+            )
+            }}
+          )}
           </div>
           ) : (<Alerts errors={errors} />)}
-          
         </div>
       </div>
     );
@@ -67,24 +65,3 @@ class Collections extends React.Component {
 }
 
 export default withStyles(s)(Collections);
-
-/*
-{this.props.collections.map(item => (
-            <article key={item.uuid} className={s.collectionsItem}>
-              <h1 className={s.collectionsTitle}>
-                {item.name}
-              </h1>
-              <h4 className={s.collectionsDesc}>
-                Created: {item.time_created}
-              </h4>
-              <h4 className={s.collectionsDesc}>
-                Tags: {item.tags.join(', ')}
-              </h4>
-              <div
-                className={s.collectionsDesc}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: item.readme }}
-              />
-            </article>
-          ))}
-*/
