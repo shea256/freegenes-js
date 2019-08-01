@@ -117,9 +117,13 @@ class PartDetails extends React.Component {
 
           <h4>Original Sequence</h4>
 
+          {part.original_sequence ? (
           <p className={s.pBreak}>
             {part.original_sequence}
           </p>
+          ) :
+            <p><i>- no original sequence found -</i></p>
+          }
 
           <h4>Optimized Sequence</h4>
 
