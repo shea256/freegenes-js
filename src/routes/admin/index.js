@@ -12,13 +12,13 @@ import Layout from '../../components/Layout';
 import Admin from './Admin';
 
 const title = 'Admin Page';
-const isAdmin = false;
+// const isAdmin = false;
 
-function action() {
-  if (!isAdmin) {
+function action({ store }) {
+  const { user } = store.getState();
+  if (!user) {
     return { redirect: '/login' };
   }
-
   return {
     chunks: ['admin'],
     title,

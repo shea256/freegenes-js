@@ -15,6 +15,7 @@ import queryString from 'query-string';
 import { createPath } from 'history';
 import App from './components/App';
 import createFetch from './createFetch';
+import configureStore from './store/configureStore';
 import history from './history';
 import { updateMeta } from './DOMUtils';
 import router from './router';
@@ -35,6 +36,8 @@ const context = {
   fetch: createFetch(fetch, {
     baseUrl: window.App.apiUrl,
   }),
+  store: configureStore(window.App.state, { history }),
+  storeSubscription: null,
 };
 
 const container = document.getElementById('app');

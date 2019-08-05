@@ -30,6 +30,8 @@ import models from './data/models';
 import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
+import configureStore from './store/configureStore';
+import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
 
 process.on('unhandledRejection', (reason, p) => {
@@ -64,6 +66,7 @@ app.use(bodyParser.json());
 //
 // Authentication
 // -----------------------------------------------------------------------------
+// console.log(`JWT Auth Secret: ${config.auth.jwt.secret}`);
 app.use(
   expressJwt({
     secret: config.auth.jwt.secret,
@@ -119,6 +122,31 @@ app.use(
 );
 
 //
+// Register Auth middleware
+// -----------------------------------------------------------------------------
+app.post('/login', async (req, res, next) => {
+  passport.authenticate('login', (err, user, info) => {
+    if (err) {
+      // console.log(err);
+    }
+    if (info !== undefined) {
+      // console.log(info.message);
+      res.send(info.message);
+    } else {
+      req.logIn(user, () => {
+        const expiresIn = 60 * 30; // 30 minutes
+        const { token } = user;
+        res.cookie('id_token', token, {
+          maxAge: 1000 * expiresIn,
+          httpOnly: true,
+        });
+        res.redirect('/admin');
+      });
+    }
+  })(req, res, next);
+});
+
+//
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
 app.get('*', async (req, res, next) => {
@@ -140,6 +168,22 @@ app.get('*', async (req, res, next) => {
       graphql,
     });
 
+    const initialState = {
+      user: req.user || null,
+    };
+
+    const store = configureStore(initialState, {
+      fetch,
+      // I should not use `history` on server.. but how I do redirection? follow universal-router
+    });
+
+    store.dispatch(
+      setRuntimeVariable({
+        name: 'initialNow',
+        value: Date.now(),
+      }),
+    );
+
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context = {
@@ -148,6 +192,9 @@ app.get('*', async (req, res, next) => {
       // The twins below are wild, be careful!
       pathname: req.path,
       query: req.query,
+      // You can access redux through react-redux connect
+      store,
+      storeSubscription: null,
     };
 
     const route = await router.resolve(context);
@@ -178,6 +225,7 @@ app.get('*', async (req, res, next) => {
     data.scripts = Array.from(scripts);
     data.app = {
       apiUrl: config.api.clientUrl,
+      state: context.store.getState(),
     };
 
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);

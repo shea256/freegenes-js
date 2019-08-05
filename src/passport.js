@@ -1,13 +1,4 @@
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-/**
  * Passport.js reference implementation.
  * The database schema used in this sample is available at
  * https://github.com/membership/membership.db/tree/master/postgres
@@ -15,8 +6,81 @@
 
 import passport from 'passport';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
+import { Strategy as LocalStrategy } from 'passport-local';
+/* import {
+  Strategy as JWTStrategy,
+  ExtractJwt as ExtractJWT,
+} from 'passport-jwt'; */
+import fetch from 'node-fetch';
 import { User, UserLogin, UserClaim, UserProfile } from './data/models';
 import config from './config';
+
+/**
+ * Login with email and password.
+ */
+passport.use(
+  'login',
+  new LocalStrategy(
+    {
+      usernameField: 'usernameOrEmail',
+      passwordField: 'password',
+      session: false,
+    },
+    (username, password, done) => {
+      try {
+        const getTokenURL = 'https://auth.services.freegenes.org/users/token';
+        const authHeader = Buffer.from(`${username}:${password}`).toString(
+          'base64',
+        );
+        fetch(getTokenURL, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Basic ${authHeader}`,
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (Object.prototype.hasOwnProperty.call(data, 'token')) {
+              const { token } = data;
+              const user = {
+                username,
+                token,
+              };
+              return done(null, user);
+            }
+            return done(null, false, { message: 'invalid auth API response' });
+          });
+      } catch (err) {
+        done(err);
+      }
+    },
+  ),
+);
+
+/**
+ * Authorization with JWT
+ */
+
+/*
+passport.use(
+  'jwt',
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme('JWT'),
+      secretOrKey: jwtSecret.secret
+    },
+    (jwt_payload, done) => {
+      try {
+        
+      } catch(err) {
+        done(err)
+      }
+    }
+  )
+)
+*/
 
 /**
  * Sign in with Facebook.
