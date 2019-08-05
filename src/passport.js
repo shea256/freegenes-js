@@ -27,34 +27,35 @@ passport.use(
       session: false,
     },
     (username, password, done) => {
-      try {
-        const getTokenURL = 'https://auth.services.freegenes.org/users/token';
-        const authHeader = Buffer.from(`${username}:${password}`).toString(
-          'base64',
-        );
-        fetch(getTokenURL, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Basic ${authHeader}`,
-          },
+      const getTokenURL = 'https://auth.services.freegenes.org/users/token';
+      const authHeader = Buffer.from(`${username}:${password}`);
+      const base64AuthHeader = authHeader.toString('base64');
+
+      fetch(getTokenURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Basic ${base64AuthHeader}`,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (Object.prototype.hasOwnProperty.call(data, 'token')) {
+            const { token } = data;
+            const user = {
+              username,
+              token,
+            };
+            return done(null, user);
+          }
+          return done(null, false, { message: 'invalid auth API response' });
         })
-          .then(response => response.json())
-          .then(data => {
-            if (Object.prototype.hasOwnProperty.call(data, 'token')) {
-              const { token } = data;
-              const user = {
-                username,
-                token,
-              };
-              return done(null, user);
-            }
-            return done(null, false, { message: 'invalid auth API response' });
-          });
-      } catch (err) {
-        done(err);
-      }
+        .catch(err => {
+          // console.log('\n\n\n Authentication Error! \n\n\n');
+          // console.log(err);
+          done(err);
+        });
     },
   ),
 );

@@ -13,21 +13,23 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 // external-global styles must be imported in your JS.
 import normalizeCss from 'normalize.css';
-import bootstrap from 'bootstrap/dist/css/bootstrap.css'
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import s from './Layout.css';
 import Header from '../Header';
-import Feedback from '../Feedback';
+// import Feedback from '../Feedback';
 import Footer from '../Footer';
+// import { connect } from 'react-redux';
 
 class Layout extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    store: PropTypes.object.isRequired,
   };
 
   render() {
     return (
       <div>
-        <Header />
+        <Header store={this.props.store} />
         {this.props.children}
         <Footer />
       </div>
@@ -36,5 +38,3 @@ class Layout extends React.Component {
 }
 
 export default withStyles(normalizeCss, bootstrap, s)(Layout);
-
-// <Feedback />

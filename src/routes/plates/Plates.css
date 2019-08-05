@@ -16,10 +16,6 @@
   color: #212529;
 }
 
-.tableThead {}
-.tableTbody {}
-.tableTr {}
-
 .tableTh {
   padding: 0.75rem;
   vertical-align: top;
@@ -33,6 +29,7 @@
   border-top: 1px solid #dee2e6;
 }
 
+/*
 .tableTdBreak {
   padding: 0.75rem;
   vertical-align: top;
@@ -41,3 +38,4 @@
   max-width: 800px;
   word-break: break-all;
 }
+*/

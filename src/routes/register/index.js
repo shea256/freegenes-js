@@ -13,12 +13,12 @@ import Register from './Register';
 
 const title = 'New User Registration';
 
-function action() {
+function action({ store }) {
   return {
     chunks: ['register'],
     title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Register title={title} />
       </Layout>
     ),

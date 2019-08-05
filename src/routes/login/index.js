@@ -22,7 +22,7 @@ function action({ store }) {
     chunks: ['login'],
     title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Login title={title} />
       </Layout>
     ),

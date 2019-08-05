@@ -13,12 +13,12 @@ import Contact from './Contact';
 
 const title = 'Contact Us';
 
-function action() {
+function action({ store }) {
   return {
     chunks: ['contact'],
     title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Contact title={title} />
       </Layout>
     ),

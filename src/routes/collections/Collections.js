@@ -15,12 +15,11 @@ class Collections extends React.Component {
         tags: PropTypes.arrayOf(PropTypes.string),
       }),
     ).isRequired,
-    errors: PropTypes.arrayOf(PropTypes.string).isRequired
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
-    const collections = this.props.collections
-    const errors = this.props.errors
+    const { collections, errors } = this.props;
 
     return (
       <div className={s.root}>
@@ -28,36 +27,37 @@ class Collections extends React.Component {
           <h1>Gene Collections</h1>
 
           {errors.length === 0 ? (
-          <div className="row" style={{ marginTop: '30px' }}>
-          {collections.map((item, i) => { if (item) {
-            return (
-              <div className="col-md-4">
-                <div className="card" style={{ marginBottom: '30px' }}>
-                  <div className="card-body">
-                    <a href={`/collections/${item.uuid}`}>
-                    <h5 className="card-title">
-                      {item.name}
-                    </h5>
-                    </a>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Created on {item.time_created}
-                    </h6>
-                    <p className="card-text">
-                      {
-                        item.readme !== "Todo" ?
-                        item.readme.slice(0, 250) :
-                        <i>(no description found)</i>
-                      }
-                    </p>
-                    
-                  </div>
-                </div>
-              </div>
-            )
-            }}
+            <div className="row" style={{ marginTop: '30px' }}>
+              {collections.map(item => {
+                if (item) {
+                  return (
+                    <div className="col-md-4" key={item.uuid}>
+                      <div className="card" style={{ marginBottom: '30px' }}>
+                        <div className="card-body">
+                          <a href={`/collections/${item.uuid}`}>
+                            <h5 className="card-title">{item.name}</h5>
+                          </a>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            Created on {item.time_created}
+                          </h6>
+                          <p className="card-text">
+                            {item.readme !== 'Todo' ? (
+                              item.readme.slice(0, 250)
+                            ) : (
+                              <i>(no description found)</i>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          ) : (
+            <Alerts errors={errors} />
           )}
-          </div>
-          ) : (<Alerts errors={errors} />)}
         </div>
       </div>
     );

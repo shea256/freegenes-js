@@ -8,32 +8,48 @@
  */
 
 import React from 'react';
-import cx from 'classnames';
+// import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Navigation.css';
-import Link from '../Link';
-
+import PropTypes from 'prop-types';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap';
+import s from './Navigation.css';
+// import Link from '../Link';
+// import { connect } from 'react-redux';
 
 class Navigation extends React.Component {
-  constructor(props) {
-    super(props)
+  static propTypes = {
+    store: PropTypes.object.isRequired,
+  };
 
-    this.toggle = this.toggle.bind(this)
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
-    }
+      isOpen: false,
+      user: this.props.store.getState().user,
+    };
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+    this.setState((state /* , props */) => ({ isOpen: !state.isOpen }));
   }
 
   render() {
+    // console.log('User object in store:')
+    // console.log(this.props.store.getState().user)
     return (
       <div>
         <Navbar color="dark" dark expand="md">
@@ -44,21 +60,37 @@ class Navigation extends React.Component {
               <NavItem>
                 <NavLink href="/about">About</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/collections">Collections</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/parts">Parts</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Authors">Authors</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/plates">Plates</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/wells">Wells</NavLink>
-              </NavItem>
+
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Resources
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem href="/collections">Collections</DropdownItem>
+                  <DropdownItem href="/parts">Parts</DropdownItem>
+                  <DropdownItem href="/authors">Authors</DropdownItem>
+                  <DropdownItem href="/plates">Plates</DropdownItem>
+                  <DropdownItem href="/wells">Wells</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+
+              {this.state.user ? (
+                <NavItem>
+                  <NavLink href="/admin">Admin</NavLink>
+                </NavItem>
+              ) : null}
+
+              {this.state.user ? (
+                <NavItem>
+                  <NavLink href="/logout">Logout</NavLink>
+                </NavItem>
+              ) : null}
+
+              {!this.state.user ? (
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                </NavItem>
+              ) : null}
             </Nav>
           </Collapse>
         </Navbar>

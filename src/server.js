@@ -87,6 +87,15 @@ app.use((err, req, res, next) => {
 
 app.use(passport.initialize());
 
+/* app.use(
+  session({
+    secret: 'secret',
+    saveUninitialized: false,
+    resave: false,
+    cookie: { maxAge: 1000 },
+  })
+) */
+
 app.get(
   '/login/facebook',
   passport.authenticate('facebook', {
@@ -128,8 +137,8 @@ app.post('/login', async (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
     if (err) {
       // console.log(err);
-    }
-    if (info !== undefined) {
+      res.redirect('/');
+    } else if (info !== undefined) {
       // console.log(info.message);
       res.send(info.message);
     } else {
@@ -144,6 +153,18 @@ app.post('/login', async (req, res, next) => {
       });
     }
   })(req, res, next);
+});
+
+//
+// Register Logout handler
+// -----------------------------------------------------------------------------
+app.get('/logout', async (req, res /* , next */) => {
+  // console.log('logging out user...');
+  // req.session = null;
+  // console.log(req.cookies);
+  req.logout();
+  res.clearCookie('id_token');
+  res.redirect('/');
 });
 
 //

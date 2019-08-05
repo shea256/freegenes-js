@@ -23,7 +23,7 @@ function action({ store }) {
     chunks: ['admin'],
     title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Admin title={title} />
       </Layout>
     ),

@@ -13,12 +13,12 @@ import NotFound from './NotFound';
 
 const title = 'Page Not Found';
 
-function action() {
+function action({ store }) {
   return {
     chunks: ['not-found'],
     title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <NotFound title={title} />
       </Layout>
     ),

@@ -2,7 +2,7 @@ import React from 'react';
 import Authors from './Authors';
 import Layout from '../../components/Layout';
 
-async function action({ fetch }) {
+async function action({ fetch, store }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
@@ -13,21 +13,21 @@ async function action({ fetch }) {
     }),
   });
   const { data } = await resp.json();
-  let errors = []
-  let authors = []
+  const errors = [];
+  let authors = [];
   if (!data || !data.allAuthors) {
-    errors.push('Failed to load authors.')
+    errors.push('Failed to load authors.');
   } else if (data.allAuthors.length === 0) {
-    errors.push('No authors found.')
+    errors.push('No authors found.');
   } else {
-    authors = data.allAuthors
+    authors = data.allAuthors;
   }
-  
+
   return {
     title: 'FreeGenes Authors',
     chunks: ['authors'],
     component: (
-      <Layout>
+      <Layout store={store}>
         <Authors authors={authors} errors={errors} />
       </Layout>
     ),

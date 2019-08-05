@@ -3,7 +3,7 @@ import Parts from './Parts';
 import Layout from '../../components/Layout';
 import isPositiveInteger from '../../utils/isPositiveInteger';
 
-async function action({ fetch, params, query }) {
+async function action({ fetch, /* params, */ query, store }) {
   let first = 100;
   let skip = 0;
   const pageParam = query.page;
@@ -11,8 +11,8 @@ async function action({ fetch, params, query }) {
   if (!pageParam) {
     // do nothing
   } else if (isPositiveInteger(pageParam)) {
-    page = parseInt(pageParam)
-    skip = first*(page-1)
+    page = parseInt(pageParam, 10);
+    skip = first * (page - 1);
   } else {
     first = 0;
   }
@@ -25,26 +25,30 @@ async function action({ fetch, params, query }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: gqlQuery,
-      variables: { first, skip }
+      variables: { first, skip },
     }),
   });
   const { data } = await resp.json();
-  let parts = []
-  let errors = []
+  let parts = [];
+  const errors = [];
   if (!data || !data.allParts) {
-    errors.push('Failed to load parts.')
+    errors.push('Failed to load parts.');
   } else if (data.allParts.length === 0) {
-    errors.push('No parts found.')
+    errors.push('No parts found.');
   } else {
-    parts = data.allParts
+    parts = data.allParts;
   }
-  
+
   return {
     title: 'FreeGenes Parts',
     chunks: ['parts'],
     component: (
-      <Layout>
-        <Parts parts={parts} variables={{ first, skip, page }} errors={errors} />
+      <Layout store={store}>
+        <Parts
+          parts={parts}
+          variables={{ first, skip, page }}
+          errors={errors}
+        />
       </Layout>
     ),
   };
