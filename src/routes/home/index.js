@@ -11,18 +11,18 @@ import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
-async function action({ fetch }) {
-  const resp = await fetch('/graphql', {
+async function action({ /* fetch, */ store }) {
+  /* const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: '{}',
     }),
   });
-  const { data } = await resp.json();
+  const { data } = await resp.json(); */
   return {
     title: 'FreeGenes Home',
     chunks: ['home'],
     component: (
-      <Layout>
+      <Layout store={store}>
         <Home />
       </Layout>
     ),

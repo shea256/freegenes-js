@@ -12,12 +12,12 @@ import Layout from '../../components/Layout';
 import Page from '../../components/Page';
 import about from './about.md';
 
-function action() {
+function action({ store }) {
   return {
     chunks: ['about'],
     title: about.title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Page {...about} />
       </Layout>
     ),

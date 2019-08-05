@@ -2,7 +2,7 @@ import React from 'react';
 import CollectionDetails from './CollectionDetails';
 import Layout from '../../components/Layout';
 
-async function action({ fetch, params }) {
+async function action({ fetch, params, store }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
@@ -16,22 +16,22 @@ async function action({ fetch, params }) {
     }),
   });
   const { data } = await resp.json();
-  console.log(data.allParts)
+  // console.log(data.allParts);
   if (!data) throw new Error('Failed to load data.');
   if (!data.collection) throw new Error('Failed to load collection.');
   if (!data.allParts) throw new Error('Failed to load parts.');
 
-  const collection = data.collection
+  const { collection } = data;
 
-  let parts = {}
-  data.allParts.map(part => {
-    parts[part.uuid] = part
-  })
+  const parts = {};
+  data.allParts.forEach(part => {
+    parts[part.uuid] = part;
+  });
 
   return {
     title: `Collection ${collection.name}`,
     component: (
-      <Layout>
+      <Layout store={store}>
         <CollectionDetails collection={collection} parts={parts} />
       </Layout>
     ),

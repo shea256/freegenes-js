@@ -2,7 +2,7 @@ import React from 'react';
 import PartDetails from './PartDetails';
 import Layout from '../../components/Layout';
 
-async function action({ fetch, params }) {
+async function action({ fetch, params, store }) {
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: `{
@@ -26,22 +26,22 @@ async function action({ fetch, params }) {
   if (!data.allCollections) throw new Error('Failed to load collections.');
   if (!data.allAuthors) throw new Error('Failed to load authors.');
 
-  const part = data.part
+  const { part } = data;
 
-  let collections = {}
-  data.allCollections.map(collection => {
-    collections[collection.uuid] = collection
-  })
+  const collections = {};
+  data.allCollections.forEach(collection => {
+    collections[collection.uuid] = collection;
+  });
 
-  let authors = {}
-  data.allAuthors.map(author => {
-    authors[author.uuid] = author
-  })
+  const authors = {};
+  data.allAuthors.forEach(author => {
+    authors[author.uuid] = author;
+  });
 
   return {
     title: `Part ${part.name}`,
     component: (
-      <Layout>
+      <Layout store={store}>
         <PartDetails part={part} collections={collections} authors={authors} />
       </Layout>
     ),

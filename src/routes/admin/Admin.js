@@ -10,6 +10,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+// import { connect } from 'react-redux';
 import s from './Admin.css';
 
 class Admin extends React.Component {

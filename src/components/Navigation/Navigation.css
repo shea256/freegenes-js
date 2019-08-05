@@ -7,6 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+/*
 .root {
   float: right;
   margin: 6px 0 0;
@@ -16,7 +17,7 @@
   display: inline-block;
   padding: 3px 8px;
   text-decoration: none;
-  font-size: 1.125em; /* ~18px */
+  font-size: 1.125em;
 }
 
 .link,
@@ -44,3 +45,4 @@
 .spacer {
   color: rgba(255, 255, 255, 0.3);
 }
+*/

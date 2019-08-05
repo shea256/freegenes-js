@@ -15,6 +15,9 @@ if (process.env.BROWSER) {
   );
 }
 
+const JWT_PUBLIC_KEY =
+  '-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEA1QdtaG8HTAdraDbSYwde2GGIULIqRrMbmO8GHGPBmU09hbPB7nZw\nCZ/gjqi+v3P2xtfZ82PgLx86duyFmYSQ935jSHb8jPQWPQi8WP4GKow/DXz7awR5\nLN5VXvPQ6Un1FAZw6Mn8Tyf++OgnmsvzJWQ9UYmAXaMrzDlDF6g9scrTtu3Dnnpz\nxvP/HVKOxb/4xpIroH/ZI7GpAHx/FLiGDPZVNcX6bWLLgl750IrySnyUShRqHJjG\ndmKW/7wqENyU4Nvua89PXYLV4O3I8n/OJgibKeBRvMoPsLQQ++v5RjB5uAqzMYRY\nXttcTcLbLFHRpkWb+7xCND4+e0b/2PRvmQIDAQAB\n-----END RSA PUBLIC KEY-----';
+
 module.exports = {
   // Node.js app
   port: process.env.PORT || 3000,
@@ -43,7 +46,7 @@ module.exports = {
 
   // Authentication
   auth: {
-    jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
+    jwt: { secret: process.env.JWT_SECRET || JWT_PUBLIC_KEY },
 
     // https://developers.facebook.com/
     facebook: {

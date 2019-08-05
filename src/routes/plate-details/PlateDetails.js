@@ -6,22 +6,25 @@ import s from './PlateDetails.css';
 class PlateDetails extends React.Component {
   static propTypes = {
     plate: PropTypes.shape({
-      breadcrumb: PropTypes.string.isRequired,
+      breadcrumb: PropTypes.string,
       plate_form: PropTypes.string.isRequired,
       plate_name: PropTypes.string.isRequired,
       plate_type: PropTypes.string.isRequired,
       plate_vendor_id: PropTypes.string,
       protocol_uuid: PropTypes.string,
       status: PropTypes.string.isRequired,
+      container_uuid: PropTypes.string.isRequired,
       uuid: PropTypes.string.isRequired,
       wells: PropTypes.arrayOf(PropTypes.string).isRequired,
+      notes: PropTypes.string,
+      thaw_count: PropTypes.number,
     }).isRequired,
-    wells: PropTypes.object.isRequired
+    wells: PropTypes.object.isRequired,
   };
 
   render() {
-    const plate = this.props.plate
-    const wells = this.props.wells
+    const { plate, wells } = this.props;
+
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -29,21 +32,15 @@ class PlateDetails extends React.Component {
 
           <h4>Form</h4>
 
-          <p>
-            {plate.plate_form}
-          </p>
+          <p>{plate.plate_form}</p>
 
           <h4>Type</h4>
 
-          <p>
-            {plate.plate_type}
-          </p>
+          <p>{plate.plate_type}</p>
 
           <h4>Status</h4>
 
-          <p>
-            {plate.status}
-          </p>
+          <p>{plate.status}</p>
 
           <h4>Vendor ID</h4>
 
@@ -67,16 +64,19 @@ class PlateDetails extends React.Component {
 
           <h4>Wells</h4>
 
-          <ol>
-          {plate.wells.map((wellUUID, index) => (
-            <li key={index}>
-              <a href={`/wells/${wellUUID}`}>
-                {plate.plate_name} - {wells[wellUUID].address}
-              </a>
-            </li>
-          ))}
-          </ol>
-
+          {plate.wells && wells ? (
+            <ol>
+              {plate.wells.map(wellUUID => (
+                <li key={wellUUID}>
+                  <a href={`/wells/${wellUUID}`}>
+                    {plate.plate_name} - {wells[wellUUID].address}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <i>- no wells found -</i>
+          )}
         </div>
       </div>
     );

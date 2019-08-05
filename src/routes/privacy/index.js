@@ -12,12 +12,12 @@ import Layout from '../../components/Layout';
 import Page from '../../components/Page';
 import privacy from './privacy.md';
 
-function action() {
+function action({ store }) {
   return {
     chunks: ['privacy'],
     title: privacy.title,
     component: (
-      <Layout>
+      <Layout store={store}>
         <Page {...privacy} />
       </Layout>
     ),

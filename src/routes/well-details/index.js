@@ -2,8 +2,7 @@ import React from 'react';
 import WellDetails from './WellDetails';
 import Layout from '../../components/Layout';
 
-
-async function action({ fetch, params }) {
+async function action({ fetch, params, store }) {
   // get the well
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
@@ -18,7 +17,7 @@ async function action({ fetch, params }) {
   if (!data || !data.well) throw new Error('Failed to load well.');
 
   // set the well
-  let well = data.well
+  const { well } = data;
 
   // get the plate
   const resp2 = await fetch('/graphql', {
@@ -27,20 +26,20 @@ async function action({ fetch, params }) {
         plate(id: "${well.plate_uuid}") {
           uuid,plate_name
         }
-      }`
-    })
+      }`,
+    }),
   });
   const resp2JSON = await resp2.json();
-  const data2 = resp2JSON.data
+  const data2 = resp2JSON.data;
   if (!data2 || !data2.plate) throw new Error('Failed to load plates.');
 
   // set the plate
-  well.plate = data2.plate
+  well.plate = data2.plate;
 
   return {
     title: `Well ${well.address}`,
     component: (
-      <Layout>
+      <Layout store={store}>
         <WellDetails well={well} />
       </Layout>
     ),

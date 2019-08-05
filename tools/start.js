@@ -219,6 +219,7 @@ async function start() {
         server: 'src/server.js',
         middleware: [server],
         open: !process.argv.includes('--silent'),
+        notify: false,
         ...(isDebug ? {} : { notify: false, ui: false }),
       },
       (error, bs) => (error ? reject(error) : resolve(bs)),
