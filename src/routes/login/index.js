@@ -11,7 +11,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import Login from './Login';
 
-const title = 'Log In';
+const title = 'Login';
 
 function action({ store }) {
   const { user } = store.getState();

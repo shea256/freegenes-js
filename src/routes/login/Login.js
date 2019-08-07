@@ -21,12 +21,8 @@ class Login extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>
-            {this.props.title}
-          </h1>
-          <p className={s.lead}>
-            Log in with your FreeGenes API credentials.
-          </p>
+          <h1>{this.props.title}</h1>
+          <p className={s.lead}>Login with your FreeGenes API credentials.</p>
           <form method="post">
             <div className={s.formGroup}>
               <label className={s.label} htmlFor="usernameOrEmail">
@@ -53,7 +49,7 @@ class Login extends React.Component {
             </div>
             <div className={s.formGroup}>
               <button className={s.button} type="submit">
-                Log in
+                Login
               </button>
             </div>
           </form>

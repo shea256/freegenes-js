@@ -12,15 +12,27 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import configureMockStore from 'redux-mock-store';
 import App from '../App';
 import Layout from './Layout';
 
+// const middlewares = []
+const mockStore = configureMockStore();
+
 describe('Layout', () => {
   test('renders children correctly', () => {
+    const store = mockStore({});
     const wrapper = renderer
       .create(
-        <App context={{ insertCss: () => {}, fetch: () => {}, pathname: '' }}>
-          <Layout>
+        <App
+          context={{
+            store,
+            insertCss: () => {},
+            fetch: () => {},
+            pathname: '',
+          }}
+        >
+          <Layout store={store}>
             <div className="child" />
           </Layout>
         </App>,
