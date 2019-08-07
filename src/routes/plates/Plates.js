@@ -34,7 +34,7 @@ class Plates extends React.Component {
           <h1>Plates</h1>
 
           {errors.length === 0 ? (
-            <div className="table-responsive">
+            <div className={`table-responsive ${s.tableWrapper}`}>
               <table className={`table ${s.table}`}>
                 <thead>
                   <tr>

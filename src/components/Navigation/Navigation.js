@@ -66,11 +66,13 @@ class Navigation extends React.Component {
                   Resources
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="/collections">Collections</DropdownItem>
-                  <DropdownItem href="/parts">Parts</DropdownItem>
-                  <DropdownItem href="/authors">Authors</DropdownItem>
+                  <DropdownItem href="/collections">
+                    Biopart Collections
+                  </DropdownItem>
+                  <DropdownItem href="/parts">Bioparts</DropdownItem>
+                  <DropdownItem href="/authors">Biopart Authors</DropdownItem>
                   <DropdownItem href="/plates">Plates</DropdownItem>
-                  <DropdownItem href="/wells">Wells</DropdownItem>
+                  <DropdownItem href="/wells">Plate Wells</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
 
