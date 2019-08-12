@@ -7,7 +7,7 @@ async function action({ fetch, store }) {
     body: JSON.stringify({
       query: `{
         allCollections {
-          name,readme,time_created,uuid,tags
+          name,readme,parts,time_created,tags,uuid
         }
       }`,
     }),

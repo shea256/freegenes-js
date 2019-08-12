@@ -6,8 +6,12 @@
 }
 
 .container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 20px 0 20px 0;
+}
+
+.tableWrapper {
+  margin-top: 30px;
 }
 
 .table {
@@ -15,10 +19,6 @@
   margin-bottom: 1rem;
   color: #212529;
 }
-
-.tableThead {}
-.tableTbody {}
-.tableTr {}
 
 .tableTh {
   padding: 0.75rem;
@@ -37,7 +37,6 @@
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
-
   max-width: 800px;
   word-break: break-all;
 }

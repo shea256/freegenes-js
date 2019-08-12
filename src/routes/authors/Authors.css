@@ -6,8 +6,13 @@
 }
 
 .container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0 auto;
+  padding: 40px 0 40px 0;
+  max-width: var(--max-content-width);
+}
+
+.tableWrapper {
+  margin-top: 30px;
 }
 
 .table {
@@ -15,10 +20,6 @@
   margin-bottom: 1rem;
   color: #212529;
 }
-
-.tableThead {}
-.tableTbody {}
-.tableTr {}
 
 .tableTh {
   padding: 0.75rem;
@@ -31,13 +32,4 @@
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
-}
-
-.tableTdBreak {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-
-  max-width: 800px;
-  word-break: break-all;
 }
