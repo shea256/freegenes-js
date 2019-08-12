@@ -4,9 +4,12 @@
 import puppeteer from 'puppeteer';
 
 // const puppeteerSettings = { headless: false }
+
+const LAUNCH_HEADLESS = true;
+
 const settings = {
   website: 'http://localhost:3000',
-  launcher: { headless: false, devtools: true, slowMo: 250 },
+  launcher: { headless: LAUNCH_HEADLESS, devtools: true, slowMo: 250 },
   emulator: {
     viewport: { width: 800, height: 2400 },
     userAgent: '',
