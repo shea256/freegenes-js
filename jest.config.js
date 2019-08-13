@@ -10,6 +10,10 @@
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
+  globalSetup: './test/setup_puppeteer.js',
+  globalTeardown: './test/teardown_puppeteer.js',
+  testEnvironment: './test/puppeteer_environment.js',
+
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
   automock: false, // [boolean]
@@ -65,10 +69,11 @@ module.exports = {
     '\\.(css|less|styl|scss|sass|sss)$': 'identity-obj-proxy',
   },
 
+  preset: 'jest-puppeteer',
+
   // modulePathIgnorePatterns: // [array<string>]
   // modulePaths: // [array<string>]
   // notify: false, // [boolean]
-  // preset: // [string]
   // projects: // [array<string>]
   // clearMocks: // [boolean]
   // reporters: // [array<moduleName | [moduleName, options]>]

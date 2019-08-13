@@ -1,20 +1,43 @@
 /* eslint-env jest */
-/* eslint-disable padded-blocks, no-unused-expressions */
-
-import puppeteer from 'puppeteer';
-
-// const puppeteerSettings = { headless: false }
-
-const LAUNCH_HEADLESS = true;
+/* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 
 const settings = {
-  website: 'http://localhost:3000',
-  launcher: { headless: LAUNCH_HEADLESS, devtools: true, slowMo: 250 },
+  homepage: 'http://localhost:3000',
+  launcher: {
+    headless: false,
+    devtools: true,
+    slowMo: 250,
+  },
   emulator: {
     viewport: { width: 800, height: 2400 },
     userAgent: '',
   },
+  timeout: 16 * 1000, // 16 seconds
 };
+
+describe('Login Form', () => {
+  test(
+    'Can navigate to login form',
+    async () => {
+      // const browser = await puppeteer.launch(settings.launcher);
+      // const page = await browser.newPage();
+      const page = await global.__BROWSER__.newPage();
+      // page.emulate(settings.emulator);
+
+      await page.goto(settings.homepage);
+      await page.waitForSelector('.navbar-nav > .nav-item');
+      await page.click('.navbar-nav > .nav-item:last-child');
+      await page.waitForSelector('h1');
+
+      const html = await page.$eval('h1', e => e.innerHTML);
+
+      expect(html).toBe('Login');
+
+      page.close();
+    },
+    settings.timeout,
+  );
+});
 
 /*
 describe('H1 Text', () => {
@@ -32,25 +55,3 @@ describe('H1 Text', () => {
     browser.close()
   }, 16000)
 }) */
-
-describe('Login Form', () => {
-  test(
-    'Can navigate to login form',
-    async () => {
-      const browser = await puppeteer.launch(settings.launcher);
-      const page = await browser.newPage();
-      page.emulate(settings.emulator);
-
-      await page.goto(settings.website);
-      await page.waitForSelector('.navbar-nav > .nav-item');
-      await page.click('.navbar-nav > .nav-item:last-child');
-      await page.waitForSelector('h1');
-
-      const html = await page.$eval('h1', e => e.innerHTML);
-      expect(html).toBe('Login');
-
-      browser.close();
-    },
-    16000,
-  );
-});
