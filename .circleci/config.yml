@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Starting Server
-          command: yarn start
+          command: yarn serve
           background: true
 
       - run:
