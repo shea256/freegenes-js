@@ -1,4 +1,4 @@
- Javascript Node CircleCI 2.0 configuration file
+# Javascript Node CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10.14
+      - image: circleci/node:latest-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -25,13 +25,34 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
-      - run: yarn install
+      
+      - run:
+          name: Installing Dependencies
+          command: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
+      - run:
+          name: Building App
+          command: yarn build
+
+      - run:
+          name: Starting Server
+          command: yarn serve
+          background: true
+
+      - run:
+          name: Storing Local IP
+          command: mkdir logs && node -p "require('ip').address()" > logs/ip.log
+      
+      - run:
+          name: Waiting for Server
+          command: wget --retry-connrefused --waitretry=2 -t 5 "http://$(cat logs/ip.log):3000" > /dev/null
+
+      # Run tests!
+      - run:
+          name: Running Tests
+          command: yarn test
