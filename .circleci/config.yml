@@ -40,6 +40,11 @@ jobs:
           command: yarn build
 
       - run:
+          name: Starting Server
+          command: yarn start
+          background: true
+
+      - run:
           name: Storing Local IP
           command: mkdir logs && node -p "require('ip').address()" > logs/ip.log
       
