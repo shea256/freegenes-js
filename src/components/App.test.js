@@ -1,13 +1,9 @@
 /* eslint-env jest */
 /* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 
+const PORT = process.env.PORT || 3000;
 const settings = {
-  homepage: 'http://localhost:3000',
-  launcher: {
-    headless: false,
-    devtools: true,
-    slowMo: 250,
-  },
+  homepage: `http://localhost:${PORT}`,
   emulator: {
     viewport: { width: 800, height: 2400 },
     userAgent: '',
@@ -19,8 +15,6 @@ describe('Login Form', () => {
   test(
     'Can navigate to login form',
     async () => {
-      // const browser = await puppeteer.launch(settings.launcher);
-      // const page = await browser.newPage();
       const page = await global.__BROWSER__.newPage();
       // page.emulate(settings.emulator);
 
@@ -42,7 +36,6 @@ describe('Login Form', () => {
 /*
 describe('H1 Text', () => {
   test('h1 loads correctly', async () => {
-    let browser = await puppeteer.launch(settings.launcher)
     let page = await browser.newPage()
     page.emulate(settings.emulator)
 
