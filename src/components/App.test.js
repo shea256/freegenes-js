@@ -1,9 +1,11 @@
 /* eslint-env jest */
 /* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 
-const PORT = process.env.PORT || 3000;
+const LOCAL_PORT = process.env.PORT || 3000;
+const LOCAL_IP_ADDRESS = require('ip').address();
+
 const settings = {
-  homepage: `http://localhost:${PORT}`,
+  homepage: `http://${LOCAL_IP_ADDRESS}:${LOCAL_PORT}`,
   emulator: {
     viewport: { width: 800, height: 2400 },
     userAgent: '',
