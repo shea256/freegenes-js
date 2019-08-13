@@ -35,6 +35,23 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Building App
+          command: yarn build
+
+      - run:
+          name: Starting Server
+          command: yarn start
+          background: true
+
+      - run:
+          name: Storing Local IP
+          command: mkdir logs && node -p "require('ip').address()" > logs/ip.log
+      
+      - run:
+          name: Waiting for Server
+          command: wget --retry-connrefused --waitretry=2 -t 5 "http://$(cat logs/ip.log):3000" > /dev/null
+
       # Run tests!
       - run:
           name: Running Tests
