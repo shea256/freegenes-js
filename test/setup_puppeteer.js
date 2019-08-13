@@ -22,7 +22,7 @@ const SETTINGS = {
   },
 };
 
-const LAUNCH_SETTINGS = process.env.CI === true ? SETTINGS.CI : SETTINGS.DEV;
+const LAUNCH_SETTINGS = process.env.CI === 'true' ? SETTINGS.CI : SETTINGS.DEV;
 
 module.exports = async function setup() {
   console.log(chalk.green('\nSetup Puppeteer'));

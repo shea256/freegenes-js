@@ -1,9 +1,9 @@
 /* eslint-env jest */
 /* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 
-const LOCAL_PORT = process.env.CI === true ? process.env.PORT || 3000 : 3006;
+const LOCAL_PORT = process.env.CI === 'true' ? process.env.PORT || 3000 : 3006;
 const LOCAL_IP =
-  process.env.CI === true ? require('ip').address() : 'localhost';
+  process.env.CI === 'true' ? require('ip').address() : 'localhost';
 
 const browser = global.__BROWSER__;
 const settings = {
