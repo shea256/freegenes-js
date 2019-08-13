@@ -19,7 +19,7 @@ const adminPassword = process.env.ADMIN_PASSWORD;
 
 describe('Login Form', () => {
   test(
-    'Can navigate to login form',
+    'Can login with admin credentials',
     async () => {
       // Open a new browser page
       const page = await browser.newPage();
