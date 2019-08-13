@@ -26,7 +26,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       
-      - run: yarn install
+      - run:
+          name: Installing Dependencies
+          command: yarn install
 
       - save_cache:
           paths:
@@ -34,23 +36,18 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: building app
+          name: Building App
           command: yarn build
 
       - run:
-          name: starting node server
-          command: mkdir logs && yarn start 2>&1 | tee logs/node_server.log
-          background: true
-
-      - run:
-          name: storing local IP address
-          command: node -p "require('ip').address()" > logs/ip.log
+          name: Storing Local IP
+          command: mkdir logs && node -p "require('ip').address()" > logs/ip.log
       
       - run:
-          name: waiting for node server to start
+          name: Waiting for Server
           command: wget --retry-connrefused --waitretry=2 -t 5 "http://$(cat logs/ip.log):3000" > /dev/null
 
       # run tests!
       - run:
-          name: running tests
+          name: Running Tests
           command: yarn test
