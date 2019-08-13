@@ -10,7 +10,19 @@ const path = require('path');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
-const LAUNCH_SETTINGS = { headless: true, devtools: false };
+const SETTINGS = {
+  DEV: {
+    headless: false,
+    devtools: false,
+    slowMo: 250,
+  },
+  CI: {
+    headless: true,
+    devtools: false,
+  },
+};
+
+const LAUNCH_SETTINGS = process.env.CI === true ? SETTINGS.CI : SETTINGS.DEV;
 
 module.exports = async function setup() {
   console.log(chalk.green('\nSetup Puppeteer'));

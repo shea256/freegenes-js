@@ -11,7 +11,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import Admin from './Admin';
 
-const title = 'Admin Page';
+const title = 'Admin';
 // const isAdmin = false;
 
 function action({ store }) {
