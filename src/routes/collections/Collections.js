@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Collections.css';
 import Alerts from '../../components/Alerts';
+import CollectionsList from '../../components/CollectionsList';
 
 class Collections extends React.Component {
   static propTypes = {
@@ -19,44 +20,15 @@ class Collections extends React.Component {
   };
 
   render() {
-    const { collections, errors } = this.props;
-
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>Biopart Collections</h1>
 
-          {errors.length === 0 ? (
-            <div className={`row ${s.cardListWrapper}`}>
-              {collections.map(item => {
-                if (item) {
-                  return (
-                    <div className="col-md-6" key={item.uuid}>
-                      <div className="card" style={{ marginBottom: '30px' }}>
-                        <div className="card-body">
-                          <a href={`/collections/${item.uuid}`}>
-                            <h5 className="card-title">{item.name}</h5>
-                          </a>
-                          <h6 className="card-subtitle mb-2 text-muted">
-                            Created on {item.time_created}
-                          </h6>
-                          <p className="card-text">
-                            {item.readme !== 'Todo' ? (
-                              item.readme.slice(0, 250)
-                            ) : (
-                              <i>(no description found)</i>
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
+          {this.props.errors.length === 0 ? (
+            <CollectionsList collections={this.props.collections} />
           ) : (
-            <Alerts errors={errors} />
+            <Alerts errors={this.props.errors} />
           )}
         </div>
       </div>
