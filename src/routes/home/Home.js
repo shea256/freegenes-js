@@ -11,20 +11,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
-
-String.prototype.capitalize = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-};
+import CollectionsList from '../../components/CollectionsList';
+import Alerts from '../../components/Alerts';
 
 class Home extends React.Component {
   static propTypes = {
+    collections: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        readme: PropTypes.string.isRequired,
+        time_created: PropTypes.string.isRequired,
+        uuid: PropTypes.string.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string),
+      }),
+    ).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          
           <div className={s.banner}>
             <h1 className={s.bannerTitle}>The DNA Commons</h1>
             <p className={s.bannerDesc}>
@@ -32,19 +39,11 @@ class Home extends React.Component {
             </p>
           </div>
 
-          <h2>
-            Resources
-          </h2>
-          <div>
-            {['collections', 'parts', 'authors', 'plates', 'wells'].map((item, index) => (
-              <p key={index}>
-                <a href={`/${item}`}>
-                  {item.capitalize()}
-                </a>
-              </p>
-            ))}
-          </div>
-
+          {this.props.errors.length === 0 ? (
+            <CollectionsList collections={this.props.collections} />
+          ) : (
+            <Alerts errors={this.props.errors} />
+          )}
         </div>
       </div>
     );

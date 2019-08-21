@@ -9,7 +9,7 @@ const path = require('path');
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 module.exports = async function teardown() {
-  console.log(chalk.green('Teardown Puppeteer'));
+  console.log(chalk.green('Tearing down Puppeteer...'));
   await global.__BROWSER_GLOBAL__.close();
   rimraf.sync(DIR);
 };

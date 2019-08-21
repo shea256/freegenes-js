@@ -10,10 +10,25 @@ const path = require('path');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
-const LAUNCH_SETTINGS = { headless: true, devtools: false };
+const SETTINGS = {
+  DEV: {
+    headless: false,
+    devtools: false,
+    // slowMo: 250,
+  },
+  CI: {
+    headless: true,
+    devtools: false,
+  },
+};
+
+const LAUNCH_SETTINGS = process.env.CI === 'true' ? SETTINGS.CI : SETTINGS.DEV;
 
 module.exports = async function setup() {
-  console.log(chalk.green('\nSetup Puppeteer'));
+  // Enzyme setup
+
+  // Puppeteer setup
+  console.log(chalk.green('\nSetting up Puppeteer...'));
   const browser = await puppeteer.launch(LAUNCH_SETTINGS);
   // This global is not available inside tests but only in global teardown
   global.__BROWSER_GLOBAL__ = browser;

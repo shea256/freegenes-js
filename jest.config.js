@@ -10,9 +10,10 @@
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
-  globalSetup: './test/setup_puppeteer.js',
-  globalTeardown: './test/teardown_puppeteer.js',
-  testEnvironment: './test/puppeteer_environment.js',
+  globalSetup: './test/setupPuppeteer.js',
+  globalTeardown: './test/teardown.js',
+  testEnvironment: './test/environment.js',
+  setupTestFrameworkScriptFile: './test/setupEnzyme.js',
 
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
