@@ -12,9 +12,9 @@ import createFetch from '../../createFetch';
 const mockStore = configureMockStore();
 const baseUrl = 'http://localhost:3000';
 
-describe('Plates Page', () => {
+describe('Wells Page', () => {
   test('Renders correctly', async () => {
-    const pathname = '/plates';
+    const pathname = '/wells';
     const fetch = createFetch(nodeFetch, { baseUrl });
     const store = mockStore({});
     const appContext = {
@@ -36,7 +36,7 @@ describe('Plates Page', () => {
 
     const headers = wrapper.find('h1');
     expect(headers.length).toEqual(1);
-    expect(headers.props().children).toEqual('Plates');
+    expect(headers.props().children).toEqual('Plate Wells');
 
     const tableRows = wrapper.find('tr');
     expect(tableRows.length).toBeGreaterThan(0);
