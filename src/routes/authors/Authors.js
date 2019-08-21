@@ -18,7 +18,7 @@ class Authors extends React.Component {
   };
 
   render() {
-    const { authors, errors } = this.props.authors;
+    const { authors, errors } = this.props;
 
     return (
       <div className={s.root}>

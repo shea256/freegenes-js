@@ -9,37 +9,36 @@ import App from '../../components/App';
 import indexAction from './index';
 import createFetch from '../../createFetch';
 
-// import renderer from 'react-test-renderer'
-
 const mockStore = configureMockStore();
 const baseUrl = 'http://localhost:3000';
 
-describe('Home Page', () => {
+describe('Authors Page', () => {
   test('Renders correctly', async () => {
+    const pathname = '/authors';
     const fetch = createFetch(nodeFetch, { baseUrl });
     const store = mockStore({});
     const appContext = {
       store,
       insertCss: () => {},
       fetch: () => {},
-      pathname: '/',
+      pathname,
     };
 
-    const indexPage = await indexAction({ fetch, store })
+    const authorsPage = await indexAction({ fetch, store })
       .then(value => value)
       .catch((/* err */) => {
         /* do nothing with error */
       });
 
     const wrapper = await mount(
-      <App context={appContext}>{indexPage.component}</App>,
+      <App context={appContext}>{authorsPage.component}</App>,
     );
 
     const headers = wrapper.find('h1');
     expect(headers.length).toEqual(1);
-    expect(headers.props().children).toEqual('The DNA Commons');
+    expect(headers.props().children).toEqual('Biopart Authors');
 
-    const cards = wrapper.find('.card');
-    expect(cards.length).toBeGreaterThan(0);
+    const tableRows = wrapper.find('tr');
+    expect(tableRows.length).toBeGreaterThan(0);
   });
 });
