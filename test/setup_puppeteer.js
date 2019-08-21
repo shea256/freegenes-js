@@ -12,9 +12,9 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const SETTINGS = {
   DEV: {
-    headless: false,
+    headless: true,
     devtools: false,
-    slowMo: 250,
+    // slowMo: 250,
   },
   CI: {
     headless: true,

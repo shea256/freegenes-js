@@ -20,7 +20,7 @@ import Layout from './Layout';
 const mockStore = configureMockStore();
 
 describe('Layout', () => {
-  test('renders children correctly', () => {
+  test('Renders children correctly', () => {
     const store = mockStore({});
     const wrapper = renderer
       .create(

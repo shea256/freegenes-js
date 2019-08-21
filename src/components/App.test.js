@@ -1,7 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable padded-blocks, no-unused-expressions, no-underscore-dangle */
 
-const LOCAL_PORT = process.env.CI === 'true' ? process.env.PORT || 3000 : 3006;
+const LOCAL_PORT = process.env.CI === 'true' ? process.env.PORT || 3000 : 3000;
 const LOCAL_IP =
   process.env.CI === 'true' ? require('ip').address() : 'localhost';
 
@@ -14,8 +14,8 @@ const settings = {
   },
   timeout: 16 * 1000, // 16 seconds
 };
-const adminUsername = process.env.ADMIN_USERNAME;
-const adminPassword = process.env.ADMIN_PASSWORD;
+const adminUsername = process.env.FREEGENES_ADMIN_USERNAME;
+const adminPassword = process.env.FREEGENES_ADMIN_PASSWORD;
 
 describe('Login Form', () => {
   test(
