@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Collections.css';
-import Alerts from '../../components/Alerts';
 import CollectionsList from '../../components/CollectionsList';
+import Alerts from '../../components/Alerts';
 
 class Collections extends React.Component {
   static propTypes = {

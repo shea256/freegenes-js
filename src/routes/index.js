@@ -25,7 +25,8 @@ const routes = {
     },
     {
       path: '/collections/:id',
-      load: () => import(/* webpackChunkName: 'collection-details' */ './collection-details'),
+      load: () =>
+        import(/* webpackChunkName: 'collection-details' */ './collection-details'),
     },
     {
       path: '/parts',
@@ -33,7 +34,8 @@ const routes = {
     },
     {
       path: '/parts/:id',
-      load: () => import(/* webpackChunkName: 'part-details' */ './part-details')
+      load: () =>
+        import(/* webpackChunkName: 'part-details' */ './part-details'),
     },
     {
       path: '/wells',
@@ -41,7 +43,8 @@ const routes = {
     },
     {
       path: '/wells/:id',
-      load: () => import(/* webpackChunkName: 'well-details' */ './well-details'),
+      load: () =>
+        import(/* webpackChunkName: 'well-details' */ './well-details'),
     },
     {
       path: '/authors',
@@ -49,7 +52,8 @@ const routes = {
     },
     {
       path: '/authors/:id',
-      load: () => import(/* webpackChunkName: 'author-details' */ './author-details'),
+      load: () =>
+        import(/* webpackChunkName: 'author-details' */ './author-details'),
     },
     {
       path: '/plates',
@@ -57,7 +61,8 @@ const routes = {
     },
     {
       path: '/plates/:id',
-      load: () => import(/* webpackChunkName: 'plate-details' */ './plate-details'),
+      load: () =>
+        import(/* webpackChunkName: 'plate-details' */ './plate-details'),
     },
     {
       path: '/contact',
@@ -112,8 +117,3 @@ if (__DEV__) {
 }
 
 export default routes;
-
-//{
-//  path: '/authors',
-//  load: () => import(/* webpackChunkName: 'authors' */ './authors'),
-//},
