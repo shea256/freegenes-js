@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './CollectionCard.css';
 
 class CollectionCard extends React.Component {
   static propTypes = {
@@ -15,7 +17,7 @@ class CollectionCard extends React.Component {
   render() {
     const item = this.props.collection;
     return (
-      <div className="card" style={{ marginBottom: '30px' }}>
+      <div className={`card ${s.collectionCard}`}>
         <div className="card-body">
           <a href={`/collections/${item.uuid}`}>
             <h5 className="card-title">{item.name}</h5>
@@ -36,4 +38,4 @@ class CollectionCard extends React.Component {
   }
 }
 
-export default CollectionCard;
+export default withStyles(s)(CollectionCard);
