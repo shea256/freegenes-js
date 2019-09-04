@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './PartDetails.css';
+import capitalize from '../../utils/capitalize';
 
 class PartDetails extends React.Component {
   static propTypes = {
@@ -99,44 +100,28 @@ class PartDetails extends React.Component {
             </p>
           )}
 
-          <h4>Original Sequence</h4>
-
-          {part.original_sequence ? (
-            <p className={s.pBreak}>{part.original_sequence}</p>
-          ) : (
-            <p>
-              <i>- no sequence found -</i>
-            </p>
-          )}
-
-          <h4>Optimized Sequence</h4>
-
-          {part.optimized_sequence ? (
-            <p className={s.pBreak}>{part.optimized_sequence}</p>
-          ) : (
-            <p>
-              <i>- no sequence found -</i>
-            </p>
-          )}
-
-          <h4>Synthesized Sequence</h4>
-
-          {part.synthesized_sequence ? (
-            <p className={s.pBreak}>{part.synthesized_sequence}</p>
-          ) : (
-            <p>
-              <i>- no sequence found -</i>
-            </p>
-          )}
-
-          <h4>Full Sequence</h4>
-
-          {part.full_sequence ? (
-            <p className={s.pBreak}>{part.full_sequence}</p>
-          ) : (
-            <p>
-              <i>- no sequence found -</i>
-            </p>
+          {['original', 'optimized', 'synthesized', 'full'].map(
+            sequenceType => {
+              const partSequence = part[`${sequenceType}_sequence`];
+              if (partSequence !== undefined && partSequence !== null) {
+                return (
+                  <div>
+                    <h4>{capitalize(sequenceType)} Sequence</h4>
+                    <p className={s.pBreak}>
+                      {part[`${sequenceType}_sequence`]}
+                    </p>
+                  </div>
+                );
+              }
+              return (
+                <div>
+                  <h4>{capitalize(sequenceType)} Sequence</h4>
+                  <p>
+                    <i>- no sequence found -</i>
+                  </p>
+                </div>
+              );
+            },
           )}
         </div>
       </div>
