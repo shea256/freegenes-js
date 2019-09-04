@@ -21,16 +21,18 @@ class PartDetails extends React.Component {
       author_uuid: PropTypes.string,
     }).isRequired,
     collections: PropTypes.object.isRequired,
-    authors: PropTypes.object.isRequired
+    authors: PropTypes.object.isRequired,
   };
 
   render() {
-    const part = this.props.part
-    const collections = this.props.collections
-    const authors = this.props.authors
+    const { part, collections, authors } = this.props;
 
-    const collection = part.collection_id in collections ? collections[part.collection_id] : null
-    const author = part.author_uuid in authors ? authors[part.author_uuid] : null
+    const collection =
+      part.collection_id in collections
+        ? collections[part.collection_id]
+        : null;
+    const author =
+      part.author_uuid in authors ? authors[part.author_uuid] : null;
 
     return (
       <div className={s.root}>
@@ -39,17 +41,13 @@ class PartDetails extends React.Component {
 
           <h4>Gene ID</h4>
 
-          <p>
-            {part.gene_id}
-          </p>
+          <p>{part.gene_id}</p>
 
           <h4>Parent Collection</h4>
 
           <p>
-            { collection ? (
-            <a href={`/collections/${collection.uuid}`}>
-              {collection.name}
-            </a>
+            {collection ? (
+              <a href={`/collections/${collection.uuid}`}>{collection.name}</a>
             ) : (
               <i>- no collection found -</i>
             )}
@@ -67,17 +65,13 @@ class PartDetails extends React.Component {
 
           <h4>Time Created</h4>
 
-          <p>
-            {part.time_created}
-          </p>
+          <p>{part.time_created}</p>
 
           <h4>Author</h4>
 
           <p>
-            { author ? (
-            <a href={`/authors/${author.uuid}`}>
-              {author.name}
-            </a>
+            {author ? (
+              <a href={`/authors/${author.uuid}`}>{author.name}</a>
             ) : (
               <i>- no author found -</i>
             )}
@@ -85,29 +79,19 @@ class PartDetails extends React.Component {
 
           <h4>Status</h4>
 
-          <p>
-            {part.status ? (
-              part.status
-            ) : (
-              <i>- no status found -</i>
-            )}
-          </p>
+          <p>{part.status ? part.status : <i>- no status found -</i>}</p>
 
           <h4>Part Type</h4>
 
-          <p>
-            {part.part_type}
-          </p>
+          <p>{part.part_type}</p>
 
           <h4>Tags</h4>
 
           {part.tags && part.tags.length > 0 ? (
             <ul>
-            {part.tags.map((tag, index) => (
-              <li key={index}>
-                {tag}
-              </li>
-            ))}
+              {part.tags.map(tag => (
+                <li key={tag}>{tag}</li>
+              ))}
             </ul>
           ) : (
             <p>
@@ -118,25 +102,42 @@ class PartDetails extends React.Component {
           <h4>Original Sequence</h4>
 
           {part.original_sequence ? (
-          <p className={s.pBreak}>
-            {part.original_sequence}
-          </p>
-          ) :
-            <p><i>- no original sequence found -</i></p>
-          }
+            <p className={s.pBreak}>{part.original_sequence}</p>
+          ) : (
+            <p>
+              <i>- no sequence found -</i>
+            </p>
+          )}
 
           <h4>Optimized Sequence</h4>
 
-          <p className={s.pBreak}>
-            {part.optimized_sequence}
-          </p>
+          {part.optimized_sequence ? (
+            <p className={s.pBreak}>{part.optimized_sequence}</p>
+          ) : (
+            <p>
+              <i>- no sequence found -</i>
+            </p>
+          )}
 
           <h4>Synthesized Sequence</h4>
 
-          <p className={s.pBreak}>
-            {part.synthesized_sequence}
-          </p>
+          {part.synthesized_sequence ? (
+            <p className={s.pBreak}>{part.synthesized_sequence}</p>
+          ) : (
+            <p>
+              <i>- no sequence found -</i>
+            </p>
+          )}
 
+          <h4>Full Sequence</h4>
+
+          {part.full_sequence ? (
+            <p className={s.pBreak}>{part.full_sequence}</p>
+          ) : (
+            <p>
+              <i>- no sequence found -</i>
+            </p>
+          )}
         </div>
       </div>
     );
