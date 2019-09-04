@@ -15,6 +15,7 @@ import s from './Login.css';
 class Login extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
   };
 
   render() {
@@ -23,6 +24,9 @@ class Login extends React.Component {
         <div className={s.container}>
           <h1>{this.props.title}</h1>
           <p className={s.lead}>Login with your FreeGenes API credentials.</p>
+          {this.props.message ? (
+            <div className="alert alert-danger">{this.props.message}</div>
+          ) : null}
           <form method="post">
             <div className={s.formGroup}>
               <label className={s.label} htmlFor="usernameOrEmail">

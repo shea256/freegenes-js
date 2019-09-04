@@ -13,8 +13,9 @@ import Login from './Login';
 
 const title = 'Login';
 
-function action({ store }) {
+function action({ store, query }) {
   const { user } = store.getState();
+  const { message } = query;
   if (user) {
     return { redirect: '/admin' };
   }
@@ -23,7 +24,7 @@ function action({ store }) {
     title,
     component: (
       <Layout store={store}>
-        <Login title={title} />
+        <Login title={title} message={message} />
       </Layout>
     ),
   };

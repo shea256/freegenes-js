@@ -136,8 +136,12 @@ app.use(
 app.post('/login', async (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
     if (err) {
-      // console.log(err);
-      res.redirect('/');
+      // console.log(err.toString());
+      // res.send(err);
+      const errorMessage = 'Invalid credentials';
+      res.redirect(`/login?message=${errorMessage}`);
+      // const errorMessage = 'Invalid username and password combination';
+      // res.send(errorMessage);
     } else if (info !== undefined) {
       // console.log(info.message);
       res.send(info.message);
