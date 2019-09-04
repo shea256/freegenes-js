@@ -20,10 +20,13 @@ class Wells extends React.Component {
     ).isRequired,
     plates: PropTypes.object.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    variables: PropTypes.object.isRequired,
   };
 
   render() {
-    const { wells, plates, errors } = this.props;
+    const { wells, plates, errors, variables } = this.props;
+    const { first, skip, page } = variables;
+
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -60,7 +63,7 @@ class Wells extends React.Component {
                       return (
                         <tr key={item.uuid}>
                           <th className={s.tableTh} scope="row">
-                            {i}
+                            {i + 1 + skip}
                           </th>
                           <td className={s.tableTd}>
                             <a href={`/wells/${item.uuid}`}>
@@ -83,6 +86,20 @@ class Wells extends React.Component {
           ) : (
             <Alerts errors={errors} />
           )}
+
+          <p>
+            {page > 1 ? (
+              <a href={`/wells?page=${page - 1}`}>Previous {first} results</a>
+            ) : null}
+
+            {page > 1 && wells.length === first ? (
+              <span>&nbsp;|&nbsp;</span>
+            ) : null}
+
+            {wells.length === first ? (
+              <a href={`/wells?page=${page + 1}`}>Next {first} results</a>
+            ) : null}
+          </p>
         </div>
       </div>
     );

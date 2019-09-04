@@ -1,7 +1,4 @@
-import {
-  GraphQLList as ListType,
-  GraphQLInt as IntType
-} from 'graphql';
+import { GraphQLList as ListType, GraphQLInt as IntType } from 'graphql';
 import fetch from 'node-fetch';
 import PartType from '../types/PartType';
 
@@ -13,16 +10,14 @@ let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-function filterItems(items, first, skip) {
+function filterItems(itemsToFilter, first, skip) {
   if (first !== undefined) {
     if (skip !== undefined) {
-      return items.slice(skip, skip+first)
-    } else {
-      return items.slice(0, first)
+      return itemsToFilter.slice(skip, skip + first);
     }
-  } else {
-    return items
+    return itemsToFilter.slice(0, first);
   }
+  return itemsToFilter;
 }
 
 const allParts = {

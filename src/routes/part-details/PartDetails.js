@@ -11,9 +11,10 @@ class PartDetails extends React.Component {
       description: PropTypes.string,
       gene_id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      original_sequence: PropTypes.string.isRequired,
-      optimized_sequence: PropTypes.string.isRequired,
-      synthesized_sequence: PropTypes.string.isRequired,
+      original_sequence: PropTypes.string,
+      optimized_sequence: PropTypes.string,
+      synthesized_sequence: PropTypes.string,
+      full_sequence: PropTypes.string,
       part_type: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.string),
       status: PropTypes.string,
@@ -103,7 +104,7 @@ class PartDetails extends React.Component {
           {['original', 'optimized', 'synthesized', 'full'].map(
             sequenceType => {
               const partSequence = part[`${sequenceType}_sequence`];
-              if (partSequence !== undefined && partSequence !== null) {
+              if (partSequence) {
                 return (
                   <div>
                     <h4>{capitalize(sequenceType)} Sequence</h4>

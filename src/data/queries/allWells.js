@@ -1,6 +1,7 @@
-import { GraphQLList as List } from 'graphql';
+import { GraphQLList as ListType, GraphQLInt as IntType } from 'graphql';
 import fetch from 'node-fetch';
 import WellType from '../types/WellType';
+import filterItems from '../../utils/filterItems';
 
 // FreeGenes Wells API
 const url = 'https://api.freegenes.org/wells/';
@@ -11,8 +12,12 @@ let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
 const allWells = {
-  type: new List(WellType),
-  resolve() {
+  type: new ListType(WellType),
+  args: {
+    first: { type: IntType },
+    skip: { type: IntType },
+  },
+  resolve(_, { first, skip }) {
     if (lastFetchTask) {
       return lastFetchTask;
     }
@@ -24,7 +29,7 @@ const allWells = {
         .then(data => {
           items = data;
           lastFetchTask = null;
-          return items;
+          return filterItems(items, first, skip);
         })
         .catch(err => {
           lastFetchTask = null;
@@ -32,13 +37,15 @@ const allWells = {
         });
 
       if (items.length) {
-        return items;
+        return filterItems(items, first, skip);
       }
 
       return lastFetchTask;
     }
 
-    return items;
+    // It has been less than 10 minutes since the last execution
+    // Return the items from the last execution
+    return filterItems(items, first, skip);
   },
 };
 
