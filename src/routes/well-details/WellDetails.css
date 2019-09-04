@@ -5,10 +5,6 @@
   padding-right: 20px;
 }
 
-.pBreak {
-	word-break: break-all;
-}
-
 .container {
   margin: 30px auto 30px auto;
   max-width: var(--max-content-width);

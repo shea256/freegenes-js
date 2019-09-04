@@ -67,8 +67,13 @@ class Wells extends React.Component {
                           </th>
                           <td className={s.tableTd}>
                             <a href={`/wells/${item.uuid}`}>
-                              {plates[item.plate_uuid].plate_name} -{' '}
-                              {item.address}
+                              ...
+                              {
+                                plates[item.plate_uuid].uuid
+                                  .split('-')
+                                  .slice(-1)[0]
+                              }{' '}
+                              - {item.address}
                             </a>
                           </td>
                           <td className={s.tableTd}>{item.media}</td>
