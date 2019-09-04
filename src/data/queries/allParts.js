@@ -1,6 +1,7 @@
 import { GraphQLList as ListType, GraphQLInt as IntType } from 'graphql';
 import fetch from 'node-fetch';
 import PartType from '../types/PartType';
+import filterItems from '../../utils/filterItems';
 
 // FreeGenes Parts API
 const url = 'https://api.freegenes.org/parts/';
@@ -9,16 +10,6 @@ const TEN_MINUTES = 1000 * 60 * 10;
 let items = [];
 let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
-
-function filterItems(itemsToFilter, first, skip) {
-  if (first !== undefined) {
-    if (skip !== undefined) {
-      return itemsToFilter.slice(skip, skip + first);
-    }
-    return itemsToFilter.slice(0, first);
-  }
-  return itemsToFilter;
-}
 
 const allParts = {
   type: new ListType(PartType),
