@@ -2,7 +2,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import PropTypes from 'prop-types';
 import s from './CollectionsList.css';
-import CollectionCard from './CollectionCard';
+import CollectionCard from '../CollectionCard';
 
 class CollectionsList extends React.Component {
   static propTypes = {
