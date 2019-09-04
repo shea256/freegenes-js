@@ -20,12 +20,13 @@ class Parts extends React.Component {
         uuid: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    collections: PropTypes.object.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string).isRequired,
     variables: PropTypes.object.isRequired,
   };
 
   render() {
-    const { parts, errors, variables } = this.props;
+    const { parts, collections, errors, variables } = this.props;
     const { first, skip, page } = variables;
 
     return (
@@ -60,6 +61,9 @@ class Parts extends React.Component {
                       Tags
                     </th>
                     <th className={s.tableTh} scope="col">
+                      Collection
+                    </th>
+                    <th className={s.tableTh} scope="col">
                       Original Sequence
                     </th>
                   </tr>
@@ -80,6 +84,13 @@ class Parts extends React.Component {
                           <td className={s.tableTd}>{item.status}</td>
                           <td className={s.tableTd}>{item.time_created}</td>
                           <td className={s.tableTd}>{item.tags.join(', ')}</td>
+                          <td className={s.tableTd}>
+                            <a href={`/collections/${item.collection_id}`}>
+                              {item.collection_id in collections
+                                ? collections[item.collection_id].name
+                                : null}
+                            </a>
+                          </td>
                           <td className={s.tableTdBreak}>
                             {item.original_sequence
                               ? item.original_sequence.slice(0, 40)

@@ -10,6 +10,9 @@ async function action({ fetch, /* params, */ query, store }) {
       collection_id,description,gene_id,name,original_sequence,part_type,
       status,tags,time_created,uuid
     }
+    allCollections {
+      name,uuid
+    }
   }`;
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
@@ -20,12 +23,21 @@ async function action({ fetch, /* params, */ query, store }) {
   const { data } = await resp.json();
   let parts = [];
   const errors = [];
-  if (!data || !data.allParts) {
+  const collections = {};
+  if (!data) {
+    errors.push('Failed to load data.');
+  } else if (!data.allParts) {
     errors.push('Failed to load parts.');
   } else if (data.allParts.length === 0) {
     errors.push('No parts found.');
+  } else if (!data.allCollections) {
+    errors.push('Failed to load collections.');
   } else {
     parts = data.allParts;
+
+    data.allCollections.forEach(collection => {
+      collections[collection.uuid] = collection;
+    });
   }
 
   return {
@@ -35,6 +47,7 @@ async function action({ fetch, /* params, */ query, store }) {
       <Layout store={store}>
         <Parts
           parts={parts}
+          collections={collections}
           variables={{ first, skip, page }}
           errors={errors}
         />
