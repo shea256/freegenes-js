@@ -16,26 +16,25 @@
 
 .container {
   margin: 0 auto;
-  padding: 40px 0 40px 0;
   max-width: var(--max-content-width);
 }
 
 .banner {
   text-align: center;
-  margin: 20px;
+  margin: 60px 10px 60px 10px;
 }
 
 .bannerTitle {
   margin: 0;
   padding: 10px;
   font-weight: normal;
-  font-size: 3em;
+  font-size: 2.5em;
   line-height: 1em;
 }
 
 @media (min-width: 576px) {
   .bannerTitle {
-    font-size: 4em;
+    font-size: 3.5em;
   }
 }
 

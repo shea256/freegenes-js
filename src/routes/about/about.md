@@ -15,22 +15,32 @@ FreeGenes is different from iGEM in that it further broadens access. While iGEM 
 
 FreeGenes is different from the Biobricks framework in its increased efficiency and versatility. While Biobricks only allows you to combine two genetic parts at a time, FreeGenes enables you to combine 10-25 different genetic parts in a single step.
 
-### Request for Help
+#### About the Team
+
+FreeGenes is a project under the BioBricks Foundation.
+
+Within the BioBricks Foundation, Keoni Gandall is the FreeGenes Project Lead, Linda Kahl is the OpenMTA Advisor and Brian Schulz is the BioBricks Foundation Managing Director.
+
+The FreeGenes board is made up of three members: Drew Endy, David Singh Grewal, and Richard A. Johnson.
+
+To learn more about the BioBricks Foundation team and board, visit the [BioBricks Foundation website](https://biobricks.org/team-and-board/).
+
+#### Request for Help
 
 We need your help. Tell us what useful DNA sequences should be developed for an open biotechnology commons and we will make them for you! What's the catch? Materials will be made available for you and others under the OpenMTA so everyone can develop applications that benefit all people and the planet.
 
-### What Happens Next
+#### What Happens Next
 
 We will make these genes for free for you and everyone else. We will also make sure that the genes are readily available and check that they are not covered by sequence-specific patent claims. Stated differently, when we say free we mean both "NO COST" AND "FREEDOM". It's kind of like having free beer AND freedom of speech. Hooray!
 
-### How It Works
+#### How It Works
 
 1. **Sequence Preparation** - We will compile your sequences and make any necessary changes to the DNA for compatibility with our high-throughput cloning process.
 2. **Cursory Review** - Your sequences will be checked for biosecurity, suitability for synthesis, and other features.
 3. **Public Comment** - Once enough genes have been compiled for an order, we will create a public post where you can see any changes made to your sequences and request modifications.
 4. **Public Distribution** - After the cloning process is complete, we will again post the sequences publicly and distribute your DNA to you.
 
-### What You Can Expect
+#### What You Can Expect
 
 1. We hold all sequences until there are enough for a batch order from Twist Bioscience.
 2. Synthesis via Twist Bioscience now takes ~3-4 weeks to complete, depending on sequence complexity.
