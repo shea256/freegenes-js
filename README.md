@@ -1,55 +1,45 @@
 # FreeGenes UI
 
-## About FreeGenes
+### About FreeGenes
 
-FreeGenes is a DNA commons. Everyone is free to browse the collection of genes, order genes from the collection, and request that new genes to be added to the collection.
+FreeGenes is (a) an open registry for genetic parts (b) a framework for bioengineering.
 
-## Request for Help
+You can browse the genetic parts on FreeGenes, order genetic part collections, and request that new genes be added to the registry.
 
-We need your help. Tell us what useful DNA sequences should be developed for an open biotechnology commons and we will make them for you! What's the catch? Materials will be made available for you and others under the OpenMTA so everyone can develop applications that benefit all people and the planet.
+Just like the iGEM Parts Registry, the FreeGenes registry makes it easier to engineer organisms through broader availability of genetic parts.
 
-## What Happens Next
+And just like Biobricks, the Freegenes framework simplifies genome building through careful design of the parts available so they can be readily combined with minimal effort.
 
-We will make these genes for free for you and everyone else. We will also make sure that the genes are readily available and check that they are not covered by sequence-specific patent claims. Stated differently, when we say free we mean both "NO COST" AND "FREEDOM". It's kind of like having free beer AND freedom of speech. Hooray!
+FreeGenes is different from iGEM in that it further broadens access. While iGEM is difficult for academic institutions and companies to use because it does not include material transfer agreements, FreeGenes provides unambiguous sharing through the Open Material Transfer Agreement (OpenMTA). While iGEM keeps a centralized network that distributes DNA once a year, FreeGenes is designed to continuously distribute DNA globally through a decentralized network of distribution nodes.
 
-## How It Works
+FreeGenes is different from the Biobricks framework in its increased efficiency and versatility. While Biobricks only allows you to combine two genetic parts at a time, FreeGenes enables you to combine 10-25 different genetic parts in a single step.
 
-1. **Sequence Preparation** - We will compile your sequences and make any necessary changes to the DNA for compatibility with our high-throughput cloning process.
-2. **Cursory Review** - Your sequences will be checked for biosecurity, suitability for synthesis, and other features.
-3. **Public Comment** - Once enough genes have been compiled for an order, we will create a public post where you can see any changes made to your sequences and request modifications.
-4. **Public Distribution** - After the cloning process is complete, we will again post the sequences publicly and distribute your DNA to you.
+Read more at [the /about page](/src/routes/about/about.md).
 
-## What You Can Expect
+### About this Website
 
-1. We hold all sequences until there are enough for a batch order from Twist Bioscience.
-2. Synthesis via Twist Bioscience now takes ~3-4 weeks to complete, depending on sequence complexity.
-3. Once we receive the newly synthesized DNA, it is processed in one of two ways: A. If you have requested DNA that can be made into MoClo-compatible parts, we will clone and sequence verify the DNA before shipping clonal plasmid stock to you. B. If you have requested DNA that cannot be made MoClo-compatible, we will ship an aliquot of the raw synthesized DNA, keeping other aliquots for any other people interested.
-4. The process of cloning and validation takes an additional ~2 weeks.
-5. The Free Genes Project is still in beta, so please work with us to make this an efficient and productive community effort.
-6. We are synthesizing, cloning, sequencing, and freely distributing 10,000 genes via the bionet.io project and under the Open Material Transfer Agreement (OpenMTA)
+This website is an isomorphic web app built using Node.js, React, Express, and GraphQL.
 
-## FAQ
+The app's isomorphic nature means it can be rendered either on the client or on the server, which allows it to get the best of both worlds from server-side rendering (SSR) and single-page apps (SPAs). It is a snappy app with powerful frontend capabilities like SPAs and it has excellent performance and SEO characteristics like traditional SSRs.
 
-### How is this different from the iGEM registry?
+The app's use of GraphQL means it can make use of extremely versatile querying capabilities, much more so than with REST APIs. This take a bit getting used to but once you get the hang of it you realize just how powerful GraphQL based querying is.
 
-There are two major differences between the Free Genes Project and the iGEM registry: The scope of distribution and the distribution methodology. First, iGEM only distributes once a year to academics and non-profits, while Free Genes distributes continuously to anyone, including academics, non-profits, companies, and even DIYbio hackers. Second, Free Genes is also interested in increasing access to biological tools through alternative distribution methodologies, such as decentralized B. subtilis spore-based distribution sets, which may drastically lower costs in DNA production, distribution, and storage. Rather than being a purely central hub for DNA, we hope that in the future there will be nodes of decentralized distributors throughout the world.
+Development and distribution are facilitated by Webpack, Babel, and Browsersync.
 
-### What restriction sites do you add/remove? (MoClo parts only)
+Testing is done using Jest, Enzyme and Puppeteer, with continuous integration on CircleCI.
 
-We remove all common Type IIS restriction enzyme sites from coding sequences. These include AarI, BsmBI, BbsI, BtgZI, BsaI, BfuAI, and SapI. For other parts, such as promoters and terminators, we strongly recommend removing BsaI, BsmBI, and SapI if possible.
+The main project is located in [the /src folder](/src).
 
-### Why do you remove restriction enzyme sites? (MoClo parts only)
+### Contributing
 
-In order to scale our cloning methods, we take advantage of GoldenGate assembly standardization, and in particular, the MoClo assembly method. We aim to make standardized open access libraries for every major organism in order to clone new synthetic DNA very quickly for any desired application. By doing this, we drastically lower costs and increase our assembly speed.
+There are several ways you can contribute to this project.
 
-### What about third party patent rights?
+First, you can contribute to the website by submitting an issue. This can be a bug report, a feature request, or a suggestion for improvement.
 
-We are currently developing an online tool to enable the community to quickly check DNA sequences for potential third party patent claims. Our goal is to empower the community to design sequences for synthesis that are free of third party rights and that can be widely shared. Stay tuned for developments on this front...
+Second, you can make an improvement yourself by picking an issue, posting a comment to tell others you are working on it, writing the code, and then submitting a pull request.
 
-### Do you ship internationally?
+Third, you can contribute to the FreeGenes project itself by submitting genes for inclusion in the registry.
 
-We would like to support the international community, but will have to manage this on a case-by-case basis. Please contact us at koeng101@gmail.com for more information.
+### License
 
-### What have you finished synthesizing?
-
-We have completed synthesis of codon optimized versions of all the JCVI syn3.0 genes. If you are interested in any of those genes, please contact us at koeng101@gmail.com.
+This project is licensed under the [MPL 2.0 License](/LICENSE).
