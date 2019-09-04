@@ -24,14 +24,14 @@ describe('Authors Page', () => {
       pathname,
     };
 
-    const authorsPage = await indexAction({ fetch, store })
+    const page = await indexAction({ fetch, store })
       .then(value => value)
       .catch((/* err */) => {
         /* do nothing with error */
       });
 
     const wrapper = await mount(
-      <App context={appContext}>{authorsPage.component}</App>,
+      <App context={appContext}>{page.component}</App>,
     );
 
     const headers = wrapper.find('h1');

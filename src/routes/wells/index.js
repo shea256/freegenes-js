@@ -1,24 +1,28 @@
 import React from 'react';
 import Wells from './Wells';
 import Layout from '../../components/Layout';
+import getPaginationVariables from '../../utils/getPaginationVariables';
 
-async function action({ fetch, store }) {
+async function action({ fetch, /* params, */ query, store }) {
+  const { first, skip, page } = getPaginationVariables(query);
+  const gqlQuery = `query WellsQuery($first: Int, $skip: Int) { 
+    allWells(first: $first, skip: $skip) {
+      address,media,organism,organism_uuid,plate_uuid,quantity,uuid,volume
+    }
+    allPlates {
+      uuid,plate_name
+    }
+  }`;
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: `{
-        allWells {
-          address,media,organism,organism_uuid,plate_uuid,quantity,uuid,volume
-        }
-        allPlates {
-          uuid,plate_name
-        }
-      }`,
+      query: gqlQuery,
+      variables: { first, skip },
     }),
   });
   const { data } = await resp.json();
-  const errors = [];
   let wells = [];
   let plates = {};
+  const errors = [];
   if (!data) {
     errors.push('Failed to load data.');
   } else if (!data.allWells) {
@@ -40,7 +44,12 @@ async function action({ fetch, store }) {
     chunks: ['wells'],
     component: (
       <Layout store={store}>
-        <Wells wells={wells} plates={plates} errors={errors} />
+        <Wells
+          wells={wells}
+          plates={plates}
+          variables={{ first, skip, page }}
+          errors={errors}
+        />
       </Layout>
     ),
   };

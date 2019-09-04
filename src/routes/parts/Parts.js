@@ -12,7 +12,7 @@ class Parts extends React.Component {
         description: PropTypes.string,
         gene_id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        original_sequence: PropTypes.string.isRequired,
+        original_sequence: PropTypes.string,
         part_type: PropTypes.string,
         tags: PropTypes.arrayOf(PropTypes.string),
         status: PropTypes.string,
@@ -81,8 +81,11 @@ class Parts extends React.Component {
                           <td className={s.tableTd}>{item.time_created}</td>
                           <td className={s.tableTd}>{item.tags.join(', ')}</td>
                           <td className={s.tableTdBreak}>
-                            {item.original_sequence.slice(0, 40)}
-                            {item.original_sequence.length > 40 ? (
+                            {item.original_sequence
+                              ? item.original_sequence.slice(0, 40)
+                              : null}
+                            {item.original_sequence &&
+                            item.original_sequence.length > 40 ? (
                               <span>
                                 <br />
                                 (and {item.original_sequence.length - 40} more

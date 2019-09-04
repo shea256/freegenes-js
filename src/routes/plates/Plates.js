@@ -42,6 +42,9 @@ class Plates extends React.Component {
                       #
                     </th>
                     <th className={s.tableTh} scope="col">
+                      UUID
+                    </th>
+                    <th className={s.tableTh} scope="col">
                       Name
                     </th>
                     <th className={s.tableTh} scope="col">
@@ -74,9 +77,11 @@ class Plates extends React.Component {
                           </th>
                           <td className={s.tableTd}>
                             <a href={`/plates/${item.uuid}`}>
-                              {item.plate_name}
+                              ...
+                              {item.uuid.split('-').slice(-1)[0]}
                             </a>
                           </td>
+                          <td className={s.tableTd}>{item.plate_name}</td>
                           <td className={s.tableTd}>{item.plate_type}</td>
                           <td className={s.tableTd}>{item.plate_form}</td>
                           <td className={s.tableTd}>{item.status}</td>

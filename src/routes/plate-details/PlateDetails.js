@@ -30,6 +30,10 @@ class PlateDetails extends React.Component {
         <div className={s.container}>
           <h1>Plate {plate.plate_name}</h1>
 
+          <h4>UUID</h4>
+
+          <p>{plate.uuid}</p>
+
           <h4>Form</h4>
 
           <p>{plate.plate_form}</p>
@@ -68,9 +72,7 @@ class PlateDetails extends React.Component {
             <ol>
               {plate.wells.map(wellUUID => (
                 <li key={wellUUID}>
-                  <a href={`/wells/${wellUUID}`}>
-                    {plate.plate_name} - {wells[wellUUID].address}
-                  </a>
+                  <a href={`/wells/${wellUUID}`}>{wells[wellUUID].address}</a>
                 </li>
               ))}
             </ol>

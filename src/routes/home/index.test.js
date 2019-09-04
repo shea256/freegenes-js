@@ -37,7 +37,7 @@ describe('Home Page', () => {
 
     const headers = wrapper.find('h1');
     expect(headers.length).toEqual(1);
-    expect(headers.props().children).toEqual('The DNA Commons');
+    expect(headers.props().children).toEqual('The Open Genetic Parts Registry');
 
     const cards = wrapper.find('.card');
     expect(cards.length).toBeGreaterThan(0);

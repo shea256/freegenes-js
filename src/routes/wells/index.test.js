@@ -16,6 +16,7 @@ describe('Wells Page', () => {
   test('Renders correctly', async () => {
     const pathname = '/wells';
     const fetch = createFetch(nodeFetch, { baseUrl });
+    const query = { page: '2' };
     const store = mockStore({});
     const appContext = {
       store,
@@ -24,7 +25,7 @@ describe('Wells Page', () => {
       pathname,
     };
 
-    const page = await indexAction({ fetch, store })
+    const page = await indexAction({ fetch, query, store })
       .then(value => value)
       .catch((/* err */) => {
         /* do nothing with error */

@@ -1,21 +1,10 @@
 import React from 'react';
 import Parts from './Parts';
 import Layout from '../../components/Layout';
-import isPositiveInteger from '../../utils/isPositiveInteger';
+import getPaginationVariables from '../../utils/getPaginationVariables';
 
 async function action({ fetch, /* params, */ query, store }) {
-  let first = 100;
-  let skip = 0;
-  const pageParam = query.page;
-  let page = 1;
-  if (!pageParam) {
-    // do nothing
-  } else if (isPositiveInteger(pageParam)) {
-    page = parseInt(pageParam, 10);
-    skip = first * (page - 1);
-  } else {
-    first = 0;
-  }
+  const { first, skip, page } = getPaginationVariables(query);
   const gqlQuery = `query PartsQuery($first: Int, $skip: Int) {
     allParts(first: $first, skip: $skip) {
       collection_id,description,gene_id,name,original_sequence,part_type,

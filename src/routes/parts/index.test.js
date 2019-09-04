@@ -25,14 +25,14 @@ describe('Parts Page', () => {
       pathname,
     };
 
-    const partsPage = await indexAction({ fetch, query, store })
+    const page = await indexAction({ fetch, query, store })
       .then(value => value)
       .catch((/* err */) => {
         /* do nothing with error */
       });
 
     const wrapper = await mount(
-      <App context={appContext}>{partsPage.component}</App>,
+      <App context={appContext}>{page.component}</App>,
     );
 
     const headers = wrapper.find('h1');

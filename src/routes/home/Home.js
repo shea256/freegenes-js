@@ -33,9 +33,10 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <div className={s.banner}>
-            <h1 className={s.bannerTitle}>The DNA Commons</h1>
+            <h1 className={s.bannerTitle}>The Open Genetic Parts Registry</h1>
             <p className={s.bannerDesc}>
-              DNA sequences in the public domain, for all to browse and order
+              FreeGenes offers genetic parts in the public domain, for all to
+              browse and order
             </p>
           </div>
 
