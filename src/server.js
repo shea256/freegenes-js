@@ -159,6 +159,36 @@ app.post('/login', async (req, res, next) => {
   })(req, res, next);
 });
 
+app.post('/parts/create', async (req, res /* , next */) => {
+  const payload = req.body;
+
+  // Forward payload to API
+  const createPartURL = 'https://api.freegenes.org/parts/';
+  const apiResponse = await fetch(createPartURL, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  const { apiData } = await apiResponse.json();
+  // console.log(apiData);
+
+  // Redirect user based on result
+  let message;
+  let status;
+  if (apiData) {
+    message = 'Part created!';
+    status = 'success';
+  } else {
+    message = 'Unable to create part';
+    status = 'error';
+  }
+  res.redirect(`/parts/create?message=${message}&status=${status}`);
+});
+
 //
 // Register Logout handler
 // -----------------------------------------------------------------------------
