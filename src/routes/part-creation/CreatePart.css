@@ -1,5 +1,5 @@
 @import '../../components/variables.css';
-@import '../../components/forms.css';
+@import '../../styles/forms.css';
 
 .root {
   padding-left: 20px;

@@ -1,12 +1,13 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import PropTypes from 'prop-types';
-import s from './TextInput.css';
+import s from './SingleSelect.css';
 
-class TextInput extends React.Component {
+class SingleSelect extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
   };
 
   render() {
@@ -14,17 +15,22 @@ class TextInput extends React.Component {
       <div className={s.formGroup}>
         <label className={s.label} htmlFor={this.props.name}>
           {this.props.label}
-          <input
-            className={s.formControl}
+          <select
+            className={`${s.formControl} ${s.selectFormControl}`}
             id={this.props.name}
-            type="text"
             name={this.props.name}
             autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-          />
+          >
+            {this.props.options.map(option => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </label>
       </div>
     );
   }
 }
 
-export default withStyles(s)(TextInput);
+export default withStyles(s)(SingleSelect);

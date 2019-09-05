@@ -7,6 +7,7 @@ class TextArea extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    rows: PropTypes.number.isRequired,
   };
 
   render() {
@@ -14,14 +15,14 @@ class TextArea extends React.Component {
       <div className={s.formGroup}>
         <label className={s.label} htmlFor={this.props.name}>
           {this.props.label}
-          <textarea
-            rows="4"
-            className={s.formControl}
-            id={this.props.name}
-            name={this.props.name}
-            autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-          />
         </label>
+        <textarea
+          rows={this.props.rows}
+          className={s.formControl}
+          id={this.props.name}
+          name={this.props.name}
+          autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+        />
       </div>
     );
   }

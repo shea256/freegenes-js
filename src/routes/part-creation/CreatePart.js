@@ -1,16 +1,54 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import PropTypes from 'prop-types';
 import s from './CreatePart.css';
 import TextInput from '../../components/TextInput';
 import TextArea from '../../components/TextArea';
+import SingleSelect from '../../components/SingleSelect';
 
 class CreatePart extends React.Component {
+  static propTypes = {
+    collections: PropTypes.array.isRequired,
+    authors: PropTypes.array.isRequired,
+  };
+
   render() {
+    const { authors, collections } = this.props;
+
+    const authorOptions = [];
+    authors.forEach(author => {
+      const option = {
+        label: author.name,
+        value: author.uuid,
+      };
+      authorOptions.push(option);
+    });
+
+    const collectionOptions = [];
+    collections.forEach(collection => {
+      const option = {
+        label: collection.name,
+        value: collection.uuid,
+      };
+      collectionOptions.push(option);
+    });
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>New Part</h1>
           <form method="post">
+            <SingleSelect
+              name="collection_id"
+              label="Collection ID"
+              options={collectionOptions}
+            />
+            <SingleSelect
+              name="author_uuid"
+              label="Author ID"
+              options={authorOptions}
+            />
+
             <TextInput name="name" label="Name" />
             <TextInput name="description" label="Description" />
             <TextInput name="gene_id" label="Gene ID" />
@@ -18,16 +56,22 @@ class CreatePart extends React.Component {
             <TextInput name="tags" label="Tags" />
             <TextInput name="status" label="Status" />
 
-            <TextInput name="collection_id" label="Collection ID" />
-            <TextInput name="author_uuid" label="Author ID" />
-
-            <TextArea name="original_sequence" label="Original Sequence" />
-            <TextArea name="optimized_sequence" label="Optimized Sequence" />
             <TextArea
+              rows={3}
+              name="original_sequence"
+              label="Original Sequence"
+            />
+            <TextArea
+              rows={3}
+              name="optimized_sequence"
+              label="Optimized Sequence"
+            />
+            <TextArea
+              rows={3}
               name="synthesized_sequence"
               label="Synthesized Sequence"
             />
-            <TextArea name="full_sequence" label="Full Sequence" />
+            <TextArea rows={3} name="full_sequence" label="Full Sequence" />
 
             <div className={s.formGroup}>
               <button className={s.button} type="submit" id="submit">
