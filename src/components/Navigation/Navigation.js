@@ -57,24 +57,22 @@ class Navigation extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Inventory
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem href="/collections">Collections</DropdownItem>
+                  <DropdownItem href="/parts">Parts</DropdownItem>
+                  <DropdownItem href="/authors">Authors</DropdownItem>
+                  <DropdownItem href="/plates">Plates</DropdownItem>
+                  <DropdownItem href="/wells">Wells</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+
               <NavItem>
                 <NavLink href="/about">About</NavLink>
               </NavItem>
-
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Resources
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem href="/collections">
-                    Biopart Collections
-                  </DropdownItem>
-                  <DropdownItem href="/parts">Bioparts</DropdownItem>
-                  <DropdownItem href="/authors">Biopart Authors</DropdownItem>
-                  <DropdownItem href="/plates">Plates</DropdownItem>
-                  <DropdownItem href="/wells">Plate Wells</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
 
               {this.state.user ? (
                 <NavItem>

@@ -23,7 +23,11 @@ class Parts extends React.Component {
     collections: PropTypes.object.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string).isRequired,
     variables: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
+  };
+
+  static defaultProps = {
+    user: null,
   };
 
   render() {
@@ -35,7 +39,7 @@ class Parts extends React.Component {
         <div className={s.container}>
           <h1>Bioparts</h1>
 
-          {user ? <a href="/parts/create">Create Part</a> : null}
+          {user !== null ? <a href="/parts/create">Create Part</a> : null}
 
           {errors.length === 0 ? (
             <div className={`table-responsive ${s.tableWrapper}`}>
