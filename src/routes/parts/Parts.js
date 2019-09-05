@@ -23,16 +23,19 @@ class Parts extends React.Component {
     collections: PropTypes.object.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string).isRequired,
     variables: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   render() {
-    const { parts, collections, errors, variables } = this.props;
+    const { parts, collections, errors, variables, user } = this.props;
     const { first, skip, page } = variables;
 
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>Bioparts</h1>
+
+          {user ? <a href="/parts/create">Create Part</a> : null}
 
           {errors.length === 0 ? (
             <div className={`table-responsive ${s.tableWrapper}`}>

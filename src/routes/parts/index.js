@@ -39,6 +39,7 @@ async function action({ fetch, /* params, */ query, store }) {
       collections[collection.uuid] = collection;
     });
   }
+  const { user } = store.getState();
 
   return {
     title: 'FreeGenes Parts',
@@ -50,6 +51,7 @@ async function action({ fetch, /* params, */ query, store }) {
           collections={collections}
           variables={{ first, skip, page }}
           errors={errors}
+          user={user}
         />
       </Layout>
     ),

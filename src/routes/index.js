@@ -33,6 +33,11 @@ const routes = {
       load: () => import(/* webpackChunkName: 'parts' */ './parts'),
     },
     {
+      path: '/parts/create',
+      load: () =>
+        import(/* webpackChunkName: 'part-creation' */ './part-creation'),
+    },
+    {
       path: '/parts/:id',
       load: () =>
         import(/* webpackChunkName: 'part-details' */ './part-details'),
