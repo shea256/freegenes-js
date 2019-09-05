@@ -51,7 +51,7 @@ describe('Login Form', () => {
       // Wait for the Admin page to load and expect the H1 tag
       await page.waitForNavigation();
       const adminH1InnerHTML = await page.$eval('h1', e => e.innerHTML);
-      expect(adminH1InnerHTML).toBe('Admin');
+      expect(adminH1InnerHTML).toBe('Admin Dashboard');
 
       // Close the page
       page.close();
