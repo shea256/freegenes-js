@@ -33,7 +33,7 @@ import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unr
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
-import requireHTTPS from './utils/requireHTTPS';
+// import requireHTTPS from './utils/requireHTTPS';
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -63,7 +63,7 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(requireHTTPS);
+// app.use(requireHTTPS);
 
 //
 // Authentication
