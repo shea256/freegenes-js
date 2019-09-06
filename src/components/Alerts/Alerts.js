@@ -1,11 +1,11 @@
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Alerts.css';
 import PropTypes from 'prop-types';
+// import withStyles from 'isomorphic-style-loader/lib/withStyles';
+// import s from './Alerts.css';
 
 class Alerts extends React.Component {
   static propTypes = {
-    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
@@ -14,15 +14,15 @@ class Alerts extends React.Component {
 
   render() {
     return (
-      <div className={s.root}>
-      {this.props.errors.map(error => (
-        <div className={`${s.alert} alert alert-danger`} key={error}>
-          {error}
-        </div>
-      ))}
+      <div>
+        {this.props.errors.map(error => (
+          <div className="alert alert-danger" key={error}>
+            {error}
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-export default withStyles(s)(Alerts);
+export default Alerts;

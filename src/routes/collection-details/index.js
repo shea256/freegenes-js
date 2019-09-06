@@ -16,23 +16,41 @@ async function action({ fetch, params, store }) {
     }),
   });
   const { data } = await resp.json();
+  const errors = [];
+  const parts = {};
   // console.log(data.allParts);
-  if (!data) throw new Error('Failed to load data.');
-  if (!data.collection) throw new Error('Failed to load collection.');
-  if (!data.allParts) throw new Error('Failed to load parts.');
+  if (!data) {
+    errors.push('Failed to load data.');
+  }
+  if (!data.collection) {
+    errors.push('Failed to load collection.');
+  }
+
+  if (!data.allParts) {
+    errors.push('Failed to load parts.');
+  } else {
+    data.allParts.forEach(part => {
+      parts[part.uuid] = part;
+    });
+  }
 
   const { collection } = data;
-
-  const parts = {};
-  data.allParts.forEach(part => {
-    parts[part.uuid] = part;
-  });
+  let title;
+  if (collection && data.allParts) {
+    title = `Collection ${collection.name}`;
+  } else {
+    title = 'Error Loading Collection';
+  }
 
   return {
-    title: `Collection ${collection.name}`,
+    title,
     component: (
       <Layout store={store}>
-        <CollectionDetails collection={collection} parts={parts} />
+        <CollectionDetails
+          collection={collection}
+          parts={parts}
+          errors={errors}
+        />
       </Layout>
     ),
   };

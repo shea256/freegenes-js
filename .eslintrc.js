@@ -90,6 +90,9 @@ module.exports = {
 
     'react/forbid-prop-types': 'off',
     'react/destructuring-assignment': 'off',
+
+    'css-modules/no-undef-class': 'off',
+    'jsx-a11y/label-has-for': 'off',
   },
 
   settings: {

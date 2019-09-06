@@ -11,6 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Login.css';
+import Alerts from '../../components/Alerts';
 
 class Login extends React.Component {
   static propTypes = {
@@ -24,9 +25,7 @@ class Login extends React.Component {
         <div className={s.container}>
           <h1>{this.props.title}</h1>
           <p className={s.lead}>Login with your FreeGenes API credentials.</p>
-          {this.props.message ? (
-            <div className="alert alert-danger">{this.props.message}</div>
-          ) : null}
+          {this.props.message ? <Alerts errors={[this.props.message]} /> : null}
           <form method="post">
             <div className={s.formGroup}>
               <label className={s.label} htmlFor="usernameOrEmail">

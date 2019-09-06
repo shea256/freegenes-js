@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './CollectionDetails.css';
+import Alerts from '../../components/Alerts';
 
 class CollectionDetails extends React.Component {
   static propTypes = {
@@ -13,55 +14,54 @@ class CollectionDetails extends React.Component {
       tags: PropTypes.arrayOf(PropTypes.string),
       parts: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
-    parts: PropTypes.object.isRequired
+    parts: PropTypes.object.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
-    const collection = this.props.collection
-    const parts = this.props.parts
+    const { collection, parts, errors } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>{collection.name}</h1>
+          {errors.length === 0 ? (
+            <div>
+              <h1>{collection.name}</h1>
 
-          <h4>Description</h4>
+              <h4>Description</h4>
 
-          <p>
-            {collection.readme}
-          </p>
+              <p>{collection.readme}</p>
 
-          <h4>Time Created</h4>
+              <h4>Time Created</h4>
 
-          <p>
-            {collection.time_created}
-          </p>
+              <p>{collection.time_created}</p>
 
-          <h4>Tags</h4>
+              <h4>Tags</h4>
 
-          {collection.tags.length > 0 ? (
-            <ul>
-            {collection.tags.map(tag => (
-              <li>{tag}</li>
-            ))}
-            </ul>
+              {collection.tags.length > 0 ? (
+                <ul>
+                  {collection.tags.map(tag => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>
+                  <i>- no tags found -</i>
+                </p>
+              )}
+
+              <h4>Parts</h4>
+
+              <ul>
+                {collection.parts.map(partUUID => (
+                  <li key={partUUID}>
+                    <a href={`/parts/${partUUID}`}>{parts[partUUID].name}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : (
-            <p>
-              <i>- no tags found -</i>
-            </p>
+            <Alerts errors={errors} />
           )}
-
-          <h4>Parts</h4>
-
-          <ul>
-          {collection.parts.map((partUUID, index) => (
-            <li key={index}>
-              <a href={`/parts/${partUUID}`}>
-                {parts[partUUID].name}
-              </a>
-            </li>
-          ))}
-          </ul>
-
         </div>
       </div>
     );

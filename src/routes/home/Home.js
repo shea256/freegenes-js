@@ -29,6 +29,7 @@ class Home extends React.Component {
   };
 
   render() {
+    const { errors } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -40,10 +41,10 @@ class Home extends React.Component {
             </p>
           </div>
 
-          {this.props.errors.length === 0 ? (
-            <CollectionsList collections={this.props.collections} />
-          ) : (
+          {errors.length > 0 ? (
             <Alerts errors={this.props.errors} />
+          ) : (
+            <CollectionsList collections={this.props.collections} />
           )}
         </div>
       </div>

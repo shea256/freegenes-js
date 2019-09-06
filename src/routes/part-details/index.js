@@ -21,28 +21,59 @@ async function action({ fetch, params, store }) {
     }),
   });
   const { data } = await resp.json();
-  if (!data) throw new Error('Failed to load data.');
-  if (!data.part) throw new Error('Failed to load part.');
-  if (!data.allCollections) throw new Error('Failed to load collections.');
-  if (!data.allAuthors) throw new Error('Failed to load authors.');
-
-  const { part } = data;
-
+  const errors = [];
   const collections = {};
-  data.allCollections.forEach(collection => {
-    collections[collection.uuid] = collection;
-  });
-
   const authors = {};
-  data.allAuthors.forEach(author => {
-    authors[author.uuid] = author;
-  });
+  let part;
+
+  if (!data) {
+    errors.push('Failed to load data.');
+  }
+  if (!data.part) {
+    errors.push('Failed to load part.');
+  }
+  if (!data.allCollections) {
+    errors.push('Failed to load collections.');
+  }
+  if (!data.allAuthors) {
+    errors.push('Failed to load authors.');
+  }
+
+  if (errors.length === 0) {
+    part = data.part;
+    data.allCollections.forEach(collection => {
+      collections[collection.uuid] = collection;
+    });
+    data.allAuthors.forEach(author => {
+      authors[author.uuid] = author;
+    });
+  }
+
+  let title;
+  let collection;
+  let author;
+  if (part) {
+    title = `Part ${part.name}`;
+    if (part.collection_id in collections) {
+      collection = collections[part.collection_id];
+    }
+    if (part.author_uuid in authors) {
+      author = authors[part.author_uuid];
+    }
+  } else {
+    title = 'Error Loading Part';
+  }
 
   return {
-    title: `Part ${part.name}`,
+    title,
     component: (
       <Layout store={store}>
-        <PartDetails part={part} collections={collections} authors={authors} />
+        <PartDetails
+          part={part}
+          collection={collection}
+          author={author}
+          errors={errors}
+        />
       </Layout>
     ),
   };

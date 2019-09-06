@@ -26,9 +26,12 @@ const allCollections = {
           lastFetchTask = null;
           return items;
         })
-        .catch(err => {
+        .catch((/* err */) => {
           lastFetchTask = null;
-          throw err;
+          // console.log(err);
+          // throw err;
+          items = [];
+          return items;
         });
 
       if (items.length) {

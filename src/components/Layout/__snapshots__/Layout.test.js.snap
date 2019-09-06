@@ -30,17 +30,6 @@ exports[`Layout Renders children correctly 1`] = `
             className="ml-auto navbar-nav"
           >
             <li
-              className="nav-item"
-            >
-              <a
-                className="nav-link"
-                href="/about"
-                onClick={[Function]}
-              >
-                About
-              </a>
-            </li>
-            <li
               className="dropdown nav-item"
               onKeyDown={[Function]}
             >
@@ -50,7 +39,7 @@ exports[`Layout Renders children correctly 1`] = `
                 href="#"
                 onClick={[Function]}
               >
-                Resources
+                Inventory
               </a>
               <div
                 aria-hidden={true}
@@ -65,7 +54,7 @@ exports[`Layout Renders children correctly 1`] = `
                   role="menuitem"
                   tabIndex="0"
                 >
-                  Biopart Collections
+                  Collections
                 </a>
                 <a
                   className="dropdown-item"
@@ -74,7 +63,7 @@ exports[`Layout Renders children correctly 1`] = `
                   role="menuitem"
                   tabIndex="0"
                 >
-                  Bioparts
+                  Parts
                 </a>
                 <a
                   className="dropdown-item"
@@ -83,7 +72,7 @@ exports[`Layout Renders children correctly 1`] = `
                   role="menuitem"
                   tabIndex="0"
                 >
-                  Biopart Authors
+                  Authors
                 </a>
                 <a
                   className="dropdown-item"
@@ -101,9 +90,20 @@ exports[`Layout Renders children correctly 1`] = `
                   role="menuitem"
                   tabIndex="0"
                 >
-                  Plate Wells
+                  Wells
                 </a>
               </div>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="/about"
+                onClick={[Function]}
+              >
+                About
+              </a>
             </li>
             <li
               className="nav-item"

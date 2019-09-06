@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './PartDetails.css';
 import capitalize from '../../utils/capitalize';
+import Alerts from '../../components/Alerts';
 
 class PartDetails extends React.Component {
   static propTypes = {
@@ -22,108 +23,109 @@ class PartDetails extends React.Component {
       uuid: PropTypes.string.isRequired,
       author_uuid: PropTypes.string,
     }).isRequired,
-    collections: PropTypes.object.isRequired,
-    authors: PropTypes.object.isRequired,
+    collection: PropTypes.object.isRequired,
+    author: PropTypes.object.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
-    const { part, collections, authors } = this.props;
-
-    const collection =
-      part.collection_id in collections
-        ? collections[part.collection_id]
-        : null;
-    const author =
-      part.author_uuid in authors ? authors[part.author_uuid] : null;
-
+    const { part, collection, author, errors } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>{part.name}</h1>
+          {errors.length !== 0 ? <Alerts errors={errors} /> : null}
 
-          <h4>Gene ID</h4>
+          {part !== null && part !== undefined ? (
+            <div>
+              <h1>{part.name}</h1>
 
-          <p>{part.gene_id}</p>
+              <h4>Gene ID</h4>
 
-          <h4>Parent Collection</h4>
+              <p>{part.gene_id}</p>
 
-          <p>
-            {collection ? (
-              <a href={`/collections/${collection.uuid}`}>{collection.name}</a>
-            ) : (
-              <i>- no collection found -</i>
-            )}
-          </p>
+              <h4>Parent Collection</h4>
 
-          <h4>Description</h4>
+              <p>
+                {collection ? (
+                  <a href={`/collections/${collection.uuid}`}>
+                    {collection.name}
+                  </a>
+                ) : (
+                  <i>- no collection found -</i>
+                )}
+              </p>
 
-          <p>
-            {part.description ? (
-              part.description
-            ) : (
-              <i>- no description found -</i>
-            )}
-          </p>
+              <h4>Description</h4>
 
-          <h4>Time Created</h4>
+              <p>
+                {part.description ? (
+                  part.description
+                ) : (
+                  <i>- no description found -</i>
+                )}
+              </p>
 
-          <p>{part.time_created}</p>
+              <h4>Time Created</h4>
 
-          <h4>Author</h4>
+              <p>{part.time_created}</p>
 
-          <p>
-            {author ? (
-              <a href={`/authors/${author.uuid}`}>{author.name}</a>
-            ) : (
-              <i>- no author found -</i>
-            )}
-          </p>
+              <h4>Author</h4>
 
-          <h4>Status</h4>
+              <p>
+                {author ? (
+                  <a href={`/authors/${author.uuid}`}>{author.name}</a>
+                ) : (
+                  <i>- no author found -</i>
+                )}
+              </p>
 
-          <p>{part.status ? part.status : <i>- no status found -</i>}</p>
+              <h4>Status</h4>
 
-          <h4>Part Type</h4>
+              <p>{part.status ? part.status : <i>- no status found -</i>}</p>
 
-          <p>{part.part_type}</p>
+              <h4>Part Type</h4>
 
-          <h4>Tags</h4>
+              <p>{part.part_type}</p>
 
-          {part.tags && part.tags.length > 0 ? (
-            <ul>
-              {part.tags.map(tag => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>- no tags found -</i>
-            </p>
-          )}
+              <h4>Tags</h4>
 
-          {['original', 'optimized', 'synthesized', 'full'].map(
-            sequenceType => {
-              const partSequence = part[`${sequenceType}_sequence`];
-              if (partSequence) {
-                return (
-                  <div>
-                    <h4>{capitalize(sequenceType)} Sequence</h4>
-                    <p className={s.pBreak}>
-                      {part[`${sequenceType}_sequence`]}
-                    </p>
-                  </div>
-                );
-              }
-              return (
-                <div>
-                  <h4>{capitalize(sequenceType)} Sequence</h4>
-                  <p>
-                    <i>- no sequence found -</i>
-                  </p>
-                </div>
-              );
-            },
-          )}
+              {part.tags && part.tags.length > 0 ? (
+                <ul>
+                  {part.tags.map(tag => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>
+                  <i>- no tags found -</i>
+                </p>
+              )}
+
+              {['original', 'optimized', 'synthesized', 'full'].map(
+                sequenceType => {
+                  const partSequence = part[`${sequenceType}_sequence`];
+                  if (partSequence) {
+                    return (
+                      <div key={sequenceType}>
+                        <h4>{capitalize(sequenceType)} Sequence</h4>
+                        <p className={s.pBreak}>
+                          {part[`${sequenceType}_sequence`]}
+                        </p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={sequenceType}>
+                      <h4>{capitalize(sequenceType)} Sequence</h4>
+                      <p>
+                        <i>- no sequence found -</i>
+                      </p>
+                    </div>
+                  );
+                },
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     );
