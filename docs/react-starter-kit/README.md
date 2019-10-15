@@ -1,11 +1,5 @@
 # Documentation
 
-## FreeGenes JS
-
-- [Architecture](./architecture.md)
-
-## React Starter Kit
-
 ### General
 
 - [React Starter Kit Overview](./overview.md)

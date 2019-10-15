@@ -1,6 +1,6 @@
 # Documentation
 
-## Overview
+### Overview
 
 - [/docs](/docs) - documentation for the site
 - [/public](/public) - basic public files like the favicon and robots.txt file
@@ -9,6 +9,6 @@
 - [/tools](/tools) - automation tools for starting the server, building the app, etc.
 - [/](/) - README, LICENSE, package.json, config files, dot files, and more
 
-## React Starter Kit
+### React Starter Kit
 
 - [/docs/react-starter-kit](./react-starter-kit) - documentation for react starter kit
