@@ -1,6 +1,14 @@
 # Testing
 
-### Commands
+## Testing with Jest
+
+#### Running Tests
+
+```bash
+yarn run test                   # Run unit tests once
+```
+
+#### Other Commands
 
 ```bash
 yarn run lint                   # Find problematic patterns in code
@@ -11,7 +19,7 @@ yarn run test-watch             # Run unit tests in watch mode
 
 For more information visit http://facebook.github.io/jest/
 
-### Files
+## Testing Files
 
 - [jestEnvironment.js](./jestEnvironment.js) - envirornment file for jest & puppeteer
 - [setupEnzyme.js](./setupEnzyme.js) - setup file for enzyme
