@@ -1,4 +1,4 @@
-# Documentation
+# React Starter Kit Docs
 
 ### General
 

@@ -1,4 +1,4 @@
-# Documentation
+# FreeGenes Docs
 
 ### Overview
 
