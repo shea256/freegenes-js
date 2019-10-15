@@ -12,7 +12,7 @@
 module.exports = {
   globalSetup: './test/setupPuppeteer.js',
   globalTeardown: './test/teardown.js',
-  testEnvironment: './test/environment.js',
+  testEnvironment: './test/jestEnvironment.js',
   setupTestFrameworkScriptFile: './test/setupEnzyme.js',
 
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).

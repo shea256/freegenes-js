@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { name, version } from '../../package.json';
-import rootReducer from '../reducers';
+import rootReducer from './reducers';
 import createHelpers from './createHelpers';
 import createLogger from './logger';
 
@@ -32,9 +32,9 @@ export default function configureStore(initialState, helpersConfig) {
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (__DEV__ && module.hot) {
-    module.hot.accept('../reducers', () =>
+    module.hot.accept('./reducers', () =>
       // eslint-disable-next-line global-require
-      store.replaceReducer(require('../reducers').default),
+      store.replaceReducer(require('./reducers').default),
     );
   }
 

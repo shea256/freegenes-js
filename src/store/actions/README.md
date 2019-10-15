@@ -2,7 +2,7 @@
 
 ### Action Types
 
-Should go to `src/constants/…`
+Should go to `src/store/constants/…`
 
 ```js
 export const ADD_TODO = 'ADD_TODO';
@@ -10,7 +10,7 @@ export const ADD_TODO = 'ADD_TODO';
 
 ### Action Creators
 
-Should go to `src/actions/…`
+Should go to `src/store/actions/…`
 
 ```js
 export function addTodo({ text }) {
