@@ -31,7 +31,7 @@ import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
-import { setRuntimeVariable } from './actions/runtime';
+import { setRuntimeVariable } from './store/actions/runtime';
 import config from './config';
 // import requireHTTPS from './utils/requireHTTPS';
 
